@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace _3ITD_StageSync
+namespace StageSync
 {
     public class RouteConfig
     {
