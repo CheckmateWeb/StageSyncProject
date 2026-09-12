@@ -22,7 +22,7 @@
     this.userverificationFunc = function (udata) {
         var data = $http({
             method: "POST",
-            url: "Module/UserVerification",
+            url: "/Modules/UserVerification",
             data: udata
         })
         return data;
