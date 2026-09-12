@@ -1,14 +1,14 @@
 ﻿app.service("StageSyncService", function ($http, $q) {
 
     this.fetchFunc = function () {
-        return $http.get("module/GetUsername");
+        return $http.get("/Modules/GetUsername");
 
     }
 
     this.updateUsernameFunc = function (uname) {
         var data = $http({
             method: "POST",
-            url: "Module/UpdateUsername",
+            url: "/Modules/UpdateUsername",
             params: {
                 username: uname
 

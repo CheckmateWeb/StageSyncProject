@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace _3ITD_StageSync.Models
+namespace StageSync.Models
 {
     public class UserModel
     {

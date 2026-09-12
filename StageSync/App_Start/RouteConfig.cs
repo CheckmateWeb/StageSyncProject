@@ -16,7 +16,7 @@ namespace StageSync
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Module", action = "MainPage", id = UrlParameter.Optional }
+                defaults: new { controller = "Modules", action = "HomePage", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,76 +1,12 @@
-﻿using _3ITD_StageSync.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
+﻿// Angular module definition required by Controller.js and Service.js
+(function(window, angular) {
+    'use strict';
 
-namespace _3ITD_StageSync.Controllers {
-    public class ModuleController : Controller
-    {
+    // Define a global 'app' Angular module so other scripts can reference it
+    var app = angular.module('StageSyncModule', []);
 
-        public ActionResult LoginPage()
-        {
-            return View();
-        }
+    // Expose to global scope to match other scripts that expect window.app
+    window.app = app;
 
+})(window, window.angular);
 
-        public ActionResult HomePage()
-        {
-            return View();
-        }
-
-
-        public ActionResult RegistrationPage()
-        {
-            return View();
-        }
-
-
-        public ActionResult AboutPage()
-        {
-            return View();
-        }
-
-
-        public ActionResult ContactPage()
-        {
-            return View();
-        }
-
-        public string GetUsername()
-        {
-            return "Mariveles";
-        }
-
-
-        public string UpdateUsername(string username)
-        {
-
-            var updated_username = username + "-" + "updated";
-            return updated_username;
-        }
-
-
-        public JsonResult UserVerification(UserModel umodel)
-        {
-            try {
-                return Json(new { success = true, data = umodel }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = ex.Message;
-                var errorInnerException = ex.InnerException;
-                var errorStack = ex.StackTrace;
-
-                return Json(new { success = false, message = errorMessage }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public void Setusername(string username)
-        {
-            // Set the username logic here
-        }
-    }
-}

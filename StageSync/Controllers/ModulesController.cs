@@ -1,43 +1,37 @@
-﻿using StageSync.Models;
+using StageSync.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 
 namespace StageSync.Controllers
 {
-    public class ModuleController : Controller
+    public class ModulesController : Controller
     {
-
         public ActionResult LoginPage()
         {
-            return RedirectToAction("LoginPage", "Modules");
+            return View();
         }
-
 
         public ActionResult HomePage()
         {
-            return RedirectToAction("HomePage", "Modules");
+            return View();
         }
-
 
         public ActionResult RegistrationPage()
         {
-            return RedirectToAction("RegistrationPage", "Modules");
+            return View();
         }
-
 
         public ActionResult AboutPage()
         {
-            return RedirectToAction("AboutPage", "Modules");
+            return View();
         }
-
 
         public ActionResult ContactPage()
         {
-            return RedirectToAction("ContactPage", "Modules");
+            return View();
         }
 
         public string GetUsername()
@@ -45,14 +39,11 @@ namespace StageSync.Controllers
             return "Mariveles";
         }
 
-
         public string UpdateUsername(string username)
         {
-
             var updated_username = username + "-" + "updated";
             return updated_username;
         }
-
 
         public JsonResult UserVerification(UserModel umodel)
         {
@@ -63,9 +54,6 @@ namespace StageSync.Controllers
             catch (Exception ex)
             {
                 var errorMessage = ex.Message;
-                var errorInnerException = ex.InnerException;
-                var errorStack = ex.StackTrace;
-
                 return Json(new { success = false, message = errorMessage }, JsonRequestBehavior.AllowGet);
             }
         }
