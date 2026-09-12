@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_StageSyncLayout.cshtml";}<div class="row">
+    <div class="col s4 m4 l4"></div>
+    <div class="col s4 m4 l4">
+        <div class="card blue lighten-4">
+            <div class="card-content white-text">
+                <span class="card-title" style="text-align:center">StageSync Login</span>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12 m12 l12">
+                                <input id="username" type="text" class="validate" ng-model="Username">
+                                <label for="username">*Username</label>
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <input id="password" type="password" class="validate" ng-model="Password">
+                                <label for="password">*Password</label>
+                            </div>
+                            <div class=" col s6 m6 l6">
+                                <a class="waves-effect waves-light btn-large" style="width:100%" ng-click="loginFunc()">LOGIN</a>
+                            </div>
+                            <div class=" col s6 m6 l6">
+                                <a class="waves-effect waves-light btn-large #d50000 red accent-4" style="width:100%" ng-click="clearFunc()">CLEAR</a>
+                            </div>
+                            <div class="col s12 m12 l12" style="text-align:center; margin-top:20px;">
+                                <p style="color:black">Don't have an account? <a href="/Home/MainPage" style="color:#0d47a1; font-weight:bold;">Register here</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 m4 l4"></div>
+</div>

@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_StageSyncLayout.cshtml";}<div class="row">
+    <div class="col s4 m4 l4"></div>
+    <div class="col s4 m4 l4">
+        <div class="card blue lighten-4">
+            <div class="card-content white-text">
+                <span class="card-title" style="text-align:center">Contact Support</span>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12 m12 l12">
+                                <input id="contact_name" type="text" class="validate" ng-model="ContactName">
+                                <label for="contact_name">*Full Name</label>
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <input id="contact_email" type="email" class="validate" ng-model="ContactEmail">
+                                <label for="contact_email">*Email Address</label>
+                            </div>
+                            <div class="input-field col s12 m12 l12">
+                                <input id="contact_msg" type="text" class="validate" ng-model="ContactMessage">
+                                <label for="contact_msg">*Message</label>
+                            </div>
+                            <div class=" col s6 m6 l6">
+                                <a class="waves-effect waves-light btn-large" style="width:100%" ng-click="alertFunc('Message Sent!')">SEND</a>
+                            </div>
+                            <div class=" col s6 m6 l6">
+                                <a class="waves-effect waves-light btn-large #d50000 red accent-4" style="width:100%" ng-click="clearFunc()">CANCEL</a>
+                            </div>
+
+                            <!-- Contact Information Table -->
+                            <div class="col s12 m12 l12" style="margin-top:15px;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Channel</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>support@stagesync.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hotline</td>
+                                            <td>+1 (800) 555-SYNC</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 m4 l4"></div>
+</div>
