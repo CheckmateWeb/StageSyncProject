@@ -1,70 +1,57 @@
 ﻿@{
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
+}
 
-}<div class="row">
-    <div class="col s4 m4 l4"></div>
-    <div class="col s4 m4 l4">
-        <div class="card blue lighten-4">
-            <div class="card-content white-text">
-                <span class="card-title" style="text-align:center">Gig Registration</span>
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="last_name" type="text" class="validate" ng-model="FName">
-                                <label for="last_name">*Band Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="last_name" type="text" class="validate" ng-model="MName">
-                                <label for="last_name">*Venue Name</label>
-                            </div>
-                            <div class="input-field col s12 m12 l12">
-                                <input id="last_name" type="text" class="validate" ng-model="LName">
-                                <label for="last_name">*Performance Role</label>
-                            </div>
-                            <div class=" col s6 m6 l6">
-                                <a class="waves-effect waves-light btn-large" style="width:100%" ng-click="registrationFunc()">SUBMIT</a>
-                            </div>
-                            <div class=" col s6 m6 l6">
-                                <a class="waves-effect waves-light btn-large #d50000 red accent-4" style="width:100%" ng-click="clearFunc()">CANCEL</a>
-                            </div>
-                            <!--Table-->
-                            <div class="col s12 m12 l12">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Band Name</th>
-                                            <th>Venue Name</th>
-                                            <th>Performance Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
+<style>
+    .hero-container {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                    url('/Content/Images/concert.jpg') no-repeat center center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #ffffff;
+    }
 
-                                    <tbody>
-                                        <tr ng-repeat="udata in userarray">
-                                            <td>{{udata.firstname}}</td>
-                                            <td>{{udata.middlename}}</td>
-                                            <td>{{udata.lastname}}</td>
-                                            <td>
-                                                <div class="col s6 m6 l6">
-                                                    <a class="waves-effect waves-light btn-large" style="width:100%" ng-click="editFunc($index)">EDIT</a>
-                                                </div>
-                                                <div class="col s6 m6 l6">
-                                                    <a class="waves-effect waves-light btn-large #d50000 red accent-4" style="width:100%" ng-click="deleteFunc($index)">DELETE</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+    .hero-title {
+        font-size: 5rem;
+        font-weight: 900;
+        letter-spacing: 3px;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.7);
+    }
 
-                            </div>
+    .btn-hero {
+        background-color: #8bc34a !important;
+        color: #121212 !important;
+        font-size: 1.1rem;
+        font-weight: 800;
+        padding: 0 45px;
+        height: 56px;
+        line-height: 56px;
+        border-radius: 28px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
 
-                        </div>
+    .btn-hero:hover {
+        background-color: #7cb342 !important;
+        transform: translateY(-2px);
+    }
 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col s4 m4 l4"></div>
+    @@media (max-width: 600px) {
+        .hero-title { font-size: 3rem; }
+    }
+</style>
+
+<div class="hero-container">
+    <h1 class="hero-title">WELCOME TO<br />STAGESYNC</h1>
+    <a href="/Modules/RegistrationPage" class="waves-effect waves-light btn-large btn-hero">
+        REGISTER NOW
+    </a>
 </div>

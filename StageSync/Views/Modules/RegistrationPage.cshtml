@@ -1,67 +1,105 @@
 ﻿@{
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
-    
-  }<div class="row">
-    <div class="col s4 m4 l4"></div>
-    <div class="col s4 m4 l4">
-        <div class="card blue lighten-4">
-            <div class="card-content white-text">
-                <span class="card-title" style="text-align:center">User Registration</span>
-                <div class="row">
-                    <form class="col s12">
+}
+
+<style>
+    .registration-wrapper {
+        min-height: 100vh;
+        width: 100%;
+        padding-top: 120px;
+        padding-bottom: 80px;
+        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/Content/Images/pexels-kelly-19452357.jpg') no-repeat center center/cover fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="registration-wrapper">
+    <div class="row" style="width: 100%; max-width: 900px;">
+        <div class="col s12">
+            <div class="card custom-card">
+                <div class="card-content">
+                    <span class="card-title" style="text-align:center">User Registration</span>
+                    <form>
                         <div class="row">
-                            <div class="input-field col s6">
+                            <!-- Top Row: Name Fields -->
+                            <div class="input-field col s4">
                                 <input id="first_name" type="text" class="validate" ng-model="FName">
                                 <label for="first_name">*First Name</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s4">
                                 <input id="middle_name" type="text" class="validate" ng-model="MName">
                                 <label for="middle_name">*Middle Name</label>
                             </div>
-                            <div class="input-field col s12 m12 l12">
+                            <div class="input-field col s4">
                                 <input id="last_name" type="text" class="validate" ng-model="LName">
                                 <label for="last_name">*Last Name</label>
                             </div>
-                            <div class=" col s6 m6 l6">
-                                <a class="waves-effect waves-light btn-large" style="width:100%" ng-click="registrationFunc()">SUBMIT</a>
+
+                            <!-- Middle Row: Band Name -->
+                            <div class="input-field col s12">
+                                <input id="band_name" type="text" class="validate" ng-model="BandName">
+                                <label for="band_name">*Band Name</label>
                             </div>
-                            <div class=" col s6 m6 l6">
-                                <a class="waves-effect waves-light btn-large #d50000 red accent-4" style="width:100%" ng-click="clearFunc()">CANCEL</a>
+
+                            <!-- Bottom Row: Credentials -->
+                            <div class="input-field col s6">
+                                <input id="reg_username" type="text" class="validate" ng-model="Username">
+                                <label for="reg_username">*Username</label>
                             </div>
-                            <!--Table-->
-                            <div class="col s12 m12 l12">
-                                <table>
+                            <div class="input-field col s6">
+                                <input id="reg_password" type="password" class="validate" ng-model="Password">
+                                <label for="reg_password">*Password</label>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="col s6" style="margin-top: 10px;">
+                                <a class="waves-effect waves-light btn-large" style="width:100%; background-color: #8bc34a; color: #121212; font-weight: bold;" ng-click="registrationFunc()">SUBMIT</a>
+                            </div>
+                            <div class="col s6" style="margin-top: 10px;">
+                                <a class="waves-effect waves-light btn-large red accent-4" style="width:100%; font-weight: bold;" ng-click="clearFunc()">CANCEL</a>
+                            </div>
+
+                            <!-- Dynamic User Table -->
+                            <div class="col s12" style="margin-top: 30px;">
+                                <table class="responsive-table custom-table">
                                     <thead>
                                         <tr>
                                             <th>First Name</th>
                                             <th>Middle Name</th>
                                             <th>Last Name</th>
-                                            <th>Action</th>
+                                            <th>Band Name</th>
+                                            <th>Username</th>
+                                            <th style="text-align: center;">Action</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <tr ng-repeat="udata in userarray">
                                             <td>{{udata.firstname}}</td>
                                             <td>{{udata.middlename}}</td>
                                             <td>{{udata.lastname}}</td>
+                                            <td>{{udata.bandname}}</td>
+                                            <td>{{udata.username}}</td>
                                             <td>
-                                                <div class=" col s6 m6 l6">
-                                                    <a class="waves-effect waves-light btn-large" style="width:100%" ng-click="registrationFunc()">EDIT</a>
-                                                </div>
-                                                <div class=" col s6 m6 l6">
-                                                    <a class="waves-effect waves-light btn-large #d50000 red accent-4" style="width:100%" ng-click="clearFunc()">DELETE</a>
+                                                <div class="row" style="margin-bottom:0;">
+                                                    <div class="col s6">
+                                                        <a class="waves-effect waves-light btn" style="width:100%; background-color: #ffb74d; color: #121212; font-weight: bold;" ng-click="editFunc($index)">EDIT</a>
+                                                    </div>
+                                                    <div class="col s6">
+                                                        <a class="waves-effect waves-light btn red accent-4" style="width:100%; font-weight: bold;" ng-click="deleteFunc($index)">DELETE</a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col s4 m4 l4"></div>
 </div>
