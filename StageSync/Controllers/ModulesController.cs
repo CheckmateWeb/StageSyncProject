@@ -1,8 +1,3 @@
-using StageSync.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StageSync.Controllers
@@ -14,13 +9,15 @@ namespace StageSync.Controllers
             return View();
         }
 
-        public ActionResult HomePage()
+        public ActionResult RegistrationPage()
         {
             return View();
         }
 
-        public ActionResult RegistrationPage()
+        public ActionResult HomePage()
         {
+            // Controller -> Welcome Message -> View
+            ViewBag.WelcomeMessage = "Welcome to StageSync — command your show, cue by cue.";
             return View();
         }
 
@@ -34,33 +31,10 @@ namespace StageSync.Controllers
             return View();
         }
 
-        public string GetUsername()
+        // Called from AngularJS via $http for the live status banner on the Home page
+        public string GetSystemStatus()
         {
-            return "Mariveles";
-        }
-
-        public string UpdateUsername(string username)
-        {
-            var updated_username = username + "-" + "updated";
-            return updated_username;
-        }
-
-        public JsonResult UserVerification(UserModel umodel)
-        {
-            try
-            {
-                return Json(new { success = true, data = umodel }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = ex.Message;
-                return Json(new { success = false, message = errorMessage }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public void Setusername(string username)
-        {
-            // Set the username logic here
+            return "All Systems Operational";
         }
     }
 }

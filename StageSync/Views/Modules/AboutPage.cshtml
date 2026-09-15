@@ -2,67 +2,71 @@
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
 }
 
-<style>
-    .about-wrapper {
-        min-height: 100vh;
-        width: 100%;
-        padding-top: 120px;
-        padding-bottom: 80px;
-        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/Content/Images/Studio.jpg') no-repeat center center/cover fixed;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
+<div class="container page-container" style="padding-top: 40px; padding-bottom: 50px;">
 
-<div class="about-wrapper">
-    <div class="row" style="width: 100%; max-width: 650px;">
+    <!-- Header banner -->
+    <div class="row">
         <div class="col s12">
-            <div class="card custom-card">
-                <div class="card-content">
-                    <span class="card-title" style="text-align:center">About StageSync</span>
-                    <div class="row">
-                        <div class="col s12">
-                            <p style="text-align:justify; margin-bottom: 25px; color: #cfd8dc; font-size: 1.05rem; line-height: 1.6;">
-                                StageSync is a live performance and gig management application designed to help independent bands, venue managers, and booking agents seamlessly organize upcoming events and performance schedules.
-                            </p>
-                        </div>
+            <div class="glass-card card-padding center-align" style="padding: 36px 20px;">
+                <h3 class="stagesync-title" style="margin: 0; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 2.5rem; color: var(--stagesync-lime);">
+                    ABOUT <span style="color: #ffffff;">STAGESYNC</span>
+                </h3>
+                <p class="grey-text text-lighten-1" style="margin: 10px 0 0 0; font-size: 1.1rem; font-weight: 300;">
+                    Stage and performance management for live shows, venues, and rehearsal studios.
+                </p>
+            </div>
+        </div>
+    </div>
 
-                        <div class="col s12">
-                            <table class="custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Feature / Tech</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>System Purpose</td>
-                                        <td>Gig & Band Schedule Tracking</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Framework</td>
-                                        <td>ASP.NET MVC & AngularJS</td>
-                                    </tr>
-                                    <tr>
-                                        <td>UI Styling</td>
-                                        <td>Materialize CSS</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Version</td>
-                                        <td>1.0.0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <!-- main body/card -->
+    <div class="row">
+        <div class="col s12">
+            <div class="glass-card glass-card-body">
+                <h5 class="white-text" style="margin-top: 0;">
+                    <i class="material-icons left" style="color: var(--stagesync-lime);">info</i>
+                    System Overview
+                </h5>
+                <div class="clearfix"></div>
+                <hr style="border-color: rgba(255,255,255,0.08); margin: 20px 0;" />
 
-                        <div class="col s12" style="margin-top: 30px;">
-                            <a class="waves-effect waves-light btn-large" style="width:100%; background-color: #8bc34a; color: #121212; font-weight: bold;" href="/Modules/HomePage">BACK TO HOME</a>
-                        </div>
-                    </div>
+                <div class="responsive-table">
+                    <table class="highlight stagesync-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">FEATURE / TECH</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong class="white-text">System Purpose</strong></td>
+                                <td>Performer onboarding, account management, and live show operations.</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="white-text">Backend</strong></td>
+                                <td>ASP.NET MVC (C# Razor)</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="white-text">Frontend</strong></td>
+                                <td>AngularJS with Materialize CSS and custom styling.</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="white-text">Theme</strong></td>
+                                <td>Dark studio glassmorphism, built for low-light control rooms.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- back to home button -->
+    <div class="center-align" style="margin-top: 25px;">
+        <button type="button" class="btn waves-effect btn-lime" ng-click="redirectHomePage()" style="padding: 0 30px; height: 45px; line-height: 45px; font-weight: 700;">
+            <i class="material-icons left">arrow_back</i>
+            BACK TO HOME
+        </button>
+    </div>
+
 </div>

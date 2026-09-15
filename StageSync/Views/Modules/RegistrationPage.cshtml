@@ -2,100 +2,198 @@
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
 }
 
-<style>
-    .registration-wrapper {
-        min-height: 100vh;
-        width: 100%;
-        padding-top: 120px;
-        padding-bottom: 80px;
-        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/Content/Images/pexels-kelly-19452357.jpg') no-repeat center center/cover fixed;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
+<div class="container page-container" style="padding-top: 40px; padding-bottom: 50px;">
 
-<div class="registration-wrapper">
-    <div class="row" style="width: 100%; max-width: 900px;">
+    <!-- header -->
+    <div class="row">
         <div class="col s12">
-            <div class="card custom-card">
-                <div class="card-content">
-                    <span class="card-title" style="text-align:center">User Registration</span>
-                    <form>
-                        <div class="row">
-                            <!-- Top Row: Name Fields -->
-                            <div class="input-field col s4">
-                                <input id="first_name" type="text" class="validate" ng-model="FName">
-                                <label for="first_name">*First Name</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="middle_name" type="text" class="validate" ng-model="MName">
-                                <label for="middle_name">*Middle Name</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="last_name" type="text" class="validate" ng-model="LName">
-                                <label for="last_name">*Last Name</label>
-                            </div>
-
-                            <!-- Middle Row: Band Name -->
-                            <div class="input-field col s12">
-                                <input id="band_name" type="text" class="validate" ng-model="BandName">
-                                <label for="band_name">*Band Name</label>
-                            </div>
-
-                            <!-- Bottom Row: Credentials -->
-                            <div class="input-field col s6">
-                                <input id="reg_username" type="text" class="validate" ng-model="Username">
-                                <label for="reg_username">*Username</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="reg_password" type="password" class="validate" ng-model="Password">
-                                <label for="reg_password">*Password</label>
-                            </div>
-
-                            <!-- Buttons -->
-                            <div class="col s6" style="margin-top: 10px;">
-                                <a class="waves-effect waves-light btn-large" style="width:100%; background-color: #8bc34a; color: #121212; font-weight: bold;" ng-click="registrationFunc()">SUBMIT</a>
-                            </div>
-                            <div class="col s6" style="margin-top: 10px;">
-                                <a class="waves-effect waves-light btn-large red accent-4" style="width:100%; font-weight: bold;" ng-click="clearFunc()">CANCEL</a>
-                            </div>
-
-                            <!-- Dynamic User Table -->
-                            <div class="col s12" style="margin-top: 30px;">
-                                <table class="responsive-table custom-table">
-                                    <thead>
-                                        <tr>
-                                            <th>First Name</th>
-                                            <th>Middle Name</th>
-                                            <th>Last Name</th>
-                                            <th>Band Name</th>
-                                            <th>Username</th>
-                                            <th style="text-align: center;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="udata in userarray">
-                                            <td>{{udata.firstname}}</td>
-                                            <td>{{udata.middlename}}</td>
-                                            <td>{{udata.lastname}}</td>
-                                            <td>{{udata.bandname}}</td>
-                                            <td>{{udata.username}}</td>
-                                            <td>
-                                                <div class="row" style="margin-bottom:0;">
-                                                    <div class="col s6">
-                                                        <a class="waves-effect waves-light btn" style="width:100%; background-color: #ffb74d; color: #121212; font-weight: bold;" ng-click="editFunc($index)">EDIT</a>
-                                                    </div>
-                                                    <div class="col s6">
-                                                        <a class="waves-effect waves-light btn red accent-4" style="width:100%; font-weight: bold;" ng-click="deleteFunc($index)">DELETE</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+            <div class="glass-card card-padding center-align" style="padding: 36px 20px;">
+                <h3 class="stagesync-title" style="margin: 0; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 2.5rem;">
+                    Performer <span style="color: #ffffff;">Registration</span>
+                </h3>
+                <p class="grey-text text-lighten-1" style="margin: 10px 0 0 0; font-size: 1.1rem; font-weight: 300;">
+                    Join the StageSync network to manage performer accounts, schedules, and production users.
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- regform -->
+    <div class="row">
+        <div class="col s12">
+            <div class="glass-card glass-card-body">
+                <h5 class="white-text" style="margin-top: 0;">
+                    <i class="material-icons left" style="color: var(--stagesync-lime);">
+                        {{isEditing ? 'edit' : 'person_add'}}
+                    </i>
+                    {{isEditing ? 'Update Performer' : 'Register Performer'}}
+                </h5>
+                <div class="clearfix"></div>
+                <hr style="border-color: rgba(255,255,255,0.08); margin: 20px 0;" />
+
+                <!-- USERNAME & PERFORMER TYPE -->
+                <div class="row">
+                    <div class="input-field col s12 m6 stagesync-input">
+                        <input id="username" type="text" ng-model="user.username" maxlength="20" />
+                        <label for="username">Username *</label>
+                    </div>
+                    <div class="input-field col s12 m6 stagesync-input">
+                        <select ng-model="user.performertype">
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="Solo Artist">Solo Artist</option>
+                            <option value="Band">Band</option>
+                            <option value="DJ">DJ</option>
+                            <option value="Instrumentalist">Instrumentalist</option>
+                            <option value="Production">Production</option>
+                        </select>
+                        <label>Performer Type</label>
+                    </div>
+                </div>
+
+                <!-- name -->
+                <div class="row">
+                    <div class="input-field col s12 m4 stagesync-input">
+                        <input id="firstname" type="text" ng-model="user.firstname" maxlength="50" />
+                        <label for="firstname">First Name *</label>
+                    </div>
+                    <div class="input-field col s12 m4 stagesync-input">
+                        <input id="middlename" type="text" ng-model="user.middlename" maxlength="50" />
+                        <label for="middlename">Middle Name</label>
+                    </div>
+                    <div class="input-field col s12 m4 stagesync-input">
+                        <input id="lastname" type="text" ng-model="user.lastname" maxlength="50" />
+                        <label for="lastname">Last Name *</label>
+                    </div>
+                </div>
+
+                <!-- contact -->
+                <div class="row">
+                    <div class="input-field col s12 m6 stagesync-input">
+                        <input id="email" type="email" ng-model="user.email" maxlength="100" />
+                        <label for="email">Email Address *</label>
+                    </div>
+                    <div class="input-field col s12 m6 stagesync-input">
+                        <input id="contactno" type="text" ng-model="user.contactno" maxlength="15" placeholder="+63 912 345 6789" />
+                        <label for="contactno">Contact Number *</label>
+                    </div>
+                </div>
+
+                <!-- password -->
+                <div class="row">
+                    <div class="input-field col s12 m6 stagesync-input" style="position: relative;">
+                        <input id="password" type="{{showPassword ? 'text' : 'password'}}" ng-model="user.password" maxlength="12" />
+                        <label for="password">
+                            Password * <span style="font-size: 0.75rem; color: #888; font-weight: normal; margin-left: 6px;">(8-12 chars, upper/lower/number/special)</span>
+                        </label>
+                        <i class="material-icons white-text"
+                           ng-click="showPassword = !showPassword"
+                           style="position: absolute; right: 10px; top: 12px; cursor: pointer; user-select: none;">
+                            {{showPassword ? 'visibility_off' : 'visibility'}}
+                        </i>
+                    </div>
+                    <div class="input-field col s12 m6 stagesync-input" style="position: relative;">
+                        <input id="confirmPassword" type="{{showConfirmPassword ? 'text' : 'password'}}" ng-model="ConfirmPassword" maxlength="12" />
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <i class="material-icons white-text"
+                           ng-click="showConfirmPassword = !showConfirmPassword"
+                           style="position: absolute; right: 10px; top: 12px; cursor: pointer; user-select: none;">
+                            {{showConfirmPassword ? 'visibility_off' : 'visibility'}}
+                        </i>
+                    </div>
+                </div>
+
+                <!-- buttoons -->
+                <div class="right-align" style="margin-top: 20px;">
+                    <button type="button" class="btn waves-effect btn-outline-lime" ng-click="clearFunc()" style="margin-right: 10px;">
+                        <i class="material-icons left">clear</i>
+                        Clear
+                    </button>
+                    <button type="button" class="btn waves-effect btn-lime" ng-click="registrationFunc()">
+                        <i class="material-icons left">
+                            {{isEditing ? 'save' : 'person_add'}}
+                        </i>
+                        {{isEditing ? 'Update Account' : 'Register'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- account table -->
+    <div class="row">
+        <div class="col s12">
+            <div class="glass-card glass-card-body">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col s12 m8">
+                        <h5 class="white-text" style="margin: 0;">Registered Accounts</h5>
+                    </div>
+                    <div class="col s12 m4 right-align">
+                        <span class="btn-outline-lime" style="padding: 4px 12px; font-size: 0.75rem;">
+                            TOTAL: {{userArray.length}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="responsive-table">
+                    <table class="highlight stagesync-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Full Name</th>
+                                <th>Performer Type</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="udata in userArray track by udata.id">
+                                <td>{{udata.id}}</td>
+                                <td><strong class="white-text">@@{{udata.username}}</strong></td>
+                                <td>{{udata.firstname}} {{udata.lastname}}</td>
+                                <td>
+                                    <span class="btn-outline-lime" style="padding: 2px 8px; font-size: 0.7rem;">
+                                        {{udata.performertype || 'N/A'}}
+                                    </span>
+                                </td>
+                                <td>{{udata.email}}</td>
+                                <td>{{udata.contactno}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-small btn-edit" ng-click="editFunc(udata)">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    <button type="button" class="btn btn-small btn-delete" ng-click="deleteFunc(udata.id)">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr ng-if="userArray.length === 0">
+                                <td colspan="7" class="center-align grey-text" style="padding:40px;">
+                                    <i class="material-icons" style="font-size:40px;">people_outline</i>
+                                    <br />
+                                    No registered accounts yet.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- back to login -->
+    <div class="center-align" style="margin-top: 20px;">
+        <a href="/Modules/LoginPage" class="btn-outline-lime" style="padding: 10px 24px; text-decoration: none;">
+            ← Back to Login
+        </a>
+    </div>
+
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var selects = document.querySelectorAll("select");
+        M.FormSelect.init(selects);
+    });
+</script>

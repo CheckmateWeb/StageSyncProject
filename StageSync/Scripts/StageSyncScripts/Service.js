@@ -1,31 +1,29 @@
-﻿app.service("StageSyncService", function ($http, $q) {
+﻿app.service("StageSyncService", function ($http) {
 
-    this.fetchFunc = function () {
-        return $http.get("/Modules/GetUsername");
+    // Get all registered accounts
+    this.getAccounts = function () {
+        return $http.get("/Modules/GetAccounts");
+    };
 
-    }
-
-    this.updateUsernameFunc = function (uname) {
-        var data = $http({
-            method: "POST",
-            url: "/Modules/UpdateUsername",
-            params: {
-                username: uname
-
+    // Create or update account
+    this.saveAccount = function (formData) {
+        return $http.post("/Modules/SaveAccount", formData, {
+            transformRequest: angular.identity,
+            headers: {
+                "Content-Type": undefined
             }
         });
+    };
 
-        return data;
+    // Delete account
+    this.deleteAccount = function (id) {
+        return $http.post("/Modules/DeleteAccount", {
+            id: id
+        });
+    };
 
-    }
-
-    this.userverificationFunc = function (udata) {
-        var data = $http({
-            method: "POST",
-            url: "/Modules/UserVerification",
-            data: udata
-        })
-        return data;
-    }
-
+    // Get welcome message from C#
+    this.fetchMessageFunc = function () {
+        return $http.get("/Modules/GetMessage");
+    };
 });

@@ -1,242 +1,90 @@
 ﻿<!DOCTYPE html>
+
+<!-- Where i put the footer, materialize, icons -->
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StageSync</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - StageSync</title>
 
-    <!-- Materialize CSS & Google Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: #0d0e12;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        .main-content {
-            flex: 1 0 auto;
-            width: 100%;
-        }
-
-        /* Glassmorphism Header Navbar */
-        .custom-nav {
-            background: rgba(13, 14, 18, 0.75) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 0 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            height: 70px;
-            line-height: 70px;
-        }
-
-            .custom-nav .brand-logo {
-                font-weight: 800;
-                letter-spacing: 1.5px;
-                color: #ffffff !important;
-                font-size: 1.6rem;
-            }
-
-            .custom-nav ul a {
-                font-size: 0.95rem;
-                font-weight: 600;
-                color: #c5cae9 !important;
-                letter-spacing: 0.5px;
-                transition: all 0.25s ease;
-                padding: 0 20px;
-            }
-
-                .custom-nav ul a:hover {
-                    color: #8bc34a !important;
-                    background-color: transparent !important;
-                }
-
-        .btn-signin-nav {
-            background-color: #8bc34a !important;
-            color: #0d0e12 !important;
-            font-weight: 700 !important;
-            border-radius: 25px;
-            padding: 0 28px !important;
-            height: 40px !important;
-            line-height: 40px !important;
-            margin-top: 15px;
-            box-shadow: 0 4px 12px rgba(139, 195, 74, 0.3);
-            transition: all 0.3s ease !important;
-        }
-
-            .btn-signin-nav:hover {
-                background-color: #9ccc65 !important;
-                box-shadow: 0 6px 16px rgba(139, 195, 74, 0.5);
-                transform: translateY(-1px);
-            }
-
-        /* Glass Card Container */
-        .custom-card {
-            background: rgba(18, 20, 26, 0.82) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            padding: 15px;
-        }
-
-            .custom-card .card-title {
-                font-weight: 700;
-                margin-bottom: 25px;
-                color: #ffffff;
-                letter-spacing: 0.5px;
-            }
-
-        /* Materialize Form Customization */
-        .input-field input[type=text],
-        .input-field input[type=password],
-        .input-field input[type=email] {
-            color: #ffffff !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-        }
-
-        .input-field label {
-            color: #b0bec5 !important;
-        }
-
-        .input-field input:focus + label {
-            color: #8bc34a !important;
-        }
-
-        .input-field input:focus {
-            border-bottom: 1px solid #8bc34a !important;
-            box-shadow: 0 1px 0 0 #8bc34a !important;
-        }
-
-        /* Table Styling */
-        table.custom-table {
-            color: #ffffff;
-            margin-top: 20px;
-        }
-
-            table.custom-table th {
-                color: #8bc34a;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-                font-weight: 700;
-            }
-
-            table.custom-table td {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-        /* Footer Styling */
-        footer.page-footer {
-            background-color: #08090b !important;
-            color: #90a4ae;
-            padding-top: 30px;
-            padding-bottom: 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            margin-top: auto;
-        }
-
-        .footer-brand {
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .footer-links-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: #90a4ae;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-            .footer-links a:hover {
-                color: #8bc34a;
-            }
-
-        .page-footer .footer-copyright {
-            background-color: #040506 !important;
-            color: #546e7a;
-            font-size: 0.85rem;
-            padding: 15px 0;
-            margin-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="~/Content/StageSyncStyle.css" />
 </head>
-<body ng-app="StageSyncModule" ng-controller="StageSyncController">
+<body ng-app="StageSyncModule" ng-controller="StageSyncController" ng-cloak>
 
-    <!-- Header Navbar -->
-    <nav class="custom-nav">
-        <div class="nav-wrapper">
-            <a href="/Modules/HomePage" class="brand-logo left">StageSync</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <!-- Background -->
+    <div class="stagesync-backdrop"></div>
+
+    <!-- navbar -->
+    <nav class="stagesync-navbar">
+        <div class="nav-wrapper container">
+            <a href="/Modules/HomePage" class="brand-logo">StageSync</a>
+            <ul class="right hide-on-med-and-down">
                 <li><a href="/Modules/HomePage">Home</a></li>
                 <li><a href="/Modules/AboutPage">About</a></li>
                 <li><a href="/Modules/ContactPage">Contact</a></li>
-                <li><a href="/Modules/LoginPage" class="waves-effect waves-light btn btn-signin-nav">Sign In</a></li>
+                <li class="nav-signin-item">
+                    <a href="/Modules/LoginPage" class="btn waves-effect btn-nav-signin">Sign In</a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
-    <div class="main-content">
+    <!-- main body content container -->
+    <main class="stagesync-main container">
         @RenderBody()
-    </div>
+    </main>
 
-    <!-- Footer -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="footer-brand">StageSync</h5>
-                    <p style="color: #78909c; line-height: 1.6; max-width: 400px;">
-                        Streamlining live performance schedules, gig management, band coordination, and venue bookings effortlessly.
-                    </p>
-                </div>
-                <div class="col l4 offset-l2 s12 footer-links">
-                    <h5 class="footer-links-title">Quick Links</h5>
-                    <ul>
-                        <li><a href="/Modules/HomePage">Home</a></li>
-                        <li><a href="/Modules/AboutPage">About StageSync</a></li>
-                        <li><a href="/Modules/ContactPage">Contact Support</a></li>
-                        <li><a href="/Modules/RegistrationPage">User Registration</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container center-align">
-                © 2026 StageSync. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
+  <!-- footer -->
+  <footer class="stagesync-footer">
+      <div class="container">
+          <div class="row" style="margin-bottom: 0;">
+                
+              <!-- brand and tagline -->
+              <div class="col s12 m6 l7" style="margin-bottom: 20px;">
+                  <h5 style="color: var(--stagesync-lime); font-weight: 800; margin-top: 0; letter-spacing: 1px;">
+                      StageSync
+                  </h5>
+                  <p style="color: var(--stagesync-slate-dim); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                      Command your show, cue by cue. Professional performance, venue, and rehearsal studio operations management.
+                  </p>
+              </div>
 
+              <!-- footer direct link and also that is beside the tagline/brand -->
+              <div class="col s12 m6 l5" style="margin-bottom: 20px;">
+                  <h6 style="color: var(--stagesync-white); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-top: 0;">
+                      Quick Links
+                  </h6>
+                  <ul style="margin: 10px 0 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; list-style: none;">
+                      <li><a href="/Modules/HomePage">Home Console</a></li>
+                      <li><a href="/Modules/AboutPage">About System</a></li>
+                      <li><a href="/Modules/ContactPage">Get in Touch</a></li>
+                      <li><a href="/Modules/RegistrationPage">Performer Register</a></li>
+                  </ul>
+              </div>
+
+          </div>
+
+          <hr style="border-color: rgba(255, 255, 255, 0.08); margin: 15px 0;" />
+
+          <!-- its da copyright bar -->
+          <div class="row" style="margin-bottom: 0;">
+              <div class="col s12 center-align" style="font-size: 0.8rem; color: var(--stagesync-slate-dim);">
+                  &copy; 2026 StageSync Production Systems. All rights reserved.
+              </div>
+          </div>
+      </div>
+  </footer>
+
+
+    <!-- SCRIPTS -->
     <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/StageSyncScripts/Module.js"></script>
     <script src="~/Scripts/StageSyncScripts/Service.js"></script>
     <script src="~/Scripts/StageSyncScripts/Controller.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

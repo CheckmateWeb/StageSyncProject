@@ -1,49 +1,61 @@
 ﻿@{
+    ViewBag.Title = "Login";
+    ViewBag.BodyClass = "bg-login";
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
 }
 
-<style>
-    .login-wrapper {
-        min-height: 100vh;
-        width: 100%;
-        padding-top: 120px;
-        padding-bottom: 80px;
-        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/Content/Images/guitar.jpg') no-repeat center center/cover fixed;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
+<div class="row" style="margin-bottom: 0;">
+    <div class="col s12 m8 l6 offset-m2 offset-l3">
 
-<div class="login-wrapper">
-    <div class="row" style="width: 100%; max-width: 450px;">
-        <div class="col s12">
-            <div class="card custom-card">
-                <div class="card-content">
-                    <span class="card-title" style="text-align:center">StageSync Login</span>
-                    <form>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="username" type="text" class="validate" ng-model="Username">
-                                <label for="username">*Username</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="password" type="password" class="validate" ng-model="Password">
-                                <label for="password">*Password</label>
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn-large" style="width:100%; background-color: #8bc34a; color: #121212; font-weight: bold;" ng-click="loginFunc()">LOGIN</a>
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn-large red accent-4" style="width:100%; font-weight: bold;" ng-click="clearFunc()">CLEAR</a>
-                            </div>
-                            <div class="col s12" style="text-align:center; margin-top:25px;">
-                                <p style="color:#b0bec5">Don't have an account? <a href="/Modules/RegistrationPage" style="color:#8bc34a; font-weight:bold;">Register here</a></p>
-                            </div>
-                        </div>
-                    </form>
+        <!-- Yung Brand -->
+        <div class="glass-card center-align" style="margin-bottom: 15px; padding: 20px;">
+            <h4 style="color: var(--stagesync-lime); font-weight: 900; letter-spacing: 2px; margin: 0; text-transform: uppercase;">
+                STAGESYNC CONSOLE
+            </h4>
+            <p style="color: var(--stagesync-slate-dim); font-size: 0.9rem; margin: 5px 0 0 0;">
+                Command your show, cue by cue.
+            </p>
+        </div>
+
+        <!-- LogIn form card -->
+        <div class="glass-card">
+            <div class="glass-card-header">
+                <h5><i class="material-icons left" style="color: var(--stagesync-lime);">lock_outline</i> Crew & Performer Login</h5>
+                <p>Sign in to access the stage console</p>
+            </div>
+            <div class="glass-card-body">
+                <form name="loginForm" ng-submit="login()">
+                    <div class="input-field stagesync-input">
+                        <input id="login_username" type="text" ng-model="loginData.Username" minlength="3" maxlength="20" required autocomplete="off" />
+                        <label for="login_username">Username *</label>
+                    </div>
+
+                    <div class="input-field stagesync-input" style="position: relative;">
+                        <input id="login_password" type="{{showPassword ? 'text' : 'password'}}" ng-model="loginData.Password" minlength="3" maxlength="20" required />
+                        <label for="login_password">Password *</label>
+                        <i class="material-icons"
+                           ng-click="showPassword = !showPassword"
+                           style="position: absolute; right: 10px; top: 12px; cursor: pointer; color: var(--stagesync-slate-dim);">
+                            {{showPassword ? 'visibility_off' : 'visibility'}}
+                        </i>
+                    </div>
+
+                    <div style="margin-top: 24px; display: flex; gap: 12px;">
+                        <button type="submit" class="btn btn-lime waves-effect" style="flex: 1;">
+                            <i class="material-icons left">vpn_key</i> LOGIN
+                        </button>
+                        <button type="button" class="btn btn-outline-lime waves-effect" ng-click="clearLogin()">
+                            <i class="material-icons left">clear</i> CLEAR
+                        </button>
+                    </div>
+                </form>
+
+                <div class="center-align" style="margin-top: 20px;">
+                    <span style="color: var(--stagesync-slate-dim); font-size: 0.85rem;">New to the crew?</span>
+                    <a href="@Url.Action("RegistrationPage", "Modules")" style="color: var(--stagesync-lime); font-weight: 700; margin-left: 5px;">Register here</a>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

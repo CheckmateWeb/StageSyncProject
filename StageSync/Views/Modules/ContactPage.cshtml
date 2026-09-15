@@ -2,71 +2,67 @@
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
 }
 
-<style>
-    .contact-wrapper {
-        min-height: 100vh;
-        width: 100%;
-        padding-top: 120px;
-        padding-bottom: 80px;
-        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/Content/Images/studios.png') no-repeat center center/cover fixed;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
+<div class="container page-container" style="padding-top: 40px; padding-bottom: 50px;">
 
-<div class="contact-wrapper">
-    <div class="row" style="width: 100%; max-width: 650px;">
+    <!-- head banner/card -->
+    <div class="row">
         <div class="col s12">
-            <div class="card custom-card">
-                <div class="card-content">
-                    <span class="card-title" style="text-align:center">Contact Support</span>
-                    <form>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="contact_name" type="text" class="validate" ng-model="ContactName">
-                                <label for="contact_name">Full Name</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="contact_email" type="email" class="validate" ng-model="ContactEmail">
-                                <label for="contact_email">Email Address</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="contact_msg" type="text" class="validate" ng-model="ContactMessage">
-                                <label for="contact_msg">Message</label>
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn-large" style="width:100%; background-color: #8bc34a; color: #121212; font-weight: bold;" ng-click="alertFunc('Message Sent!')">SEND</a>
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn-large red accent-4" style="width:100%; font-weight: bold;" ng-click="clearFunc()">CANCEL</a>
-                            </div>
+            <div class="glass-card card-padding center-align" style="padding: 36px 20px;">
+                <h3 class="stagesync-title" style="margin: 0; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 2.5rem; color: var(--stagesync-lime);">
+                    GET IN <span style="color: #ffffff;">TOUCH</span>
+                </h3>
+                <p class="grey-text text-lighten-1" style="margin: 10px 0 0 0; font-size: 1.1rem; font-weight: 300;">
+                    Reach the StageSync production team and technical operations unit.
+                </p>
+            </div>
+        </div>
+    </div>
 
-                            <div class="col s12" style="margin-top:30px;">
-                                <table class="custom-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Channel</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td>support@stagesync.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hotline</td>
-                                            <td>+1 (800) 555-SYNC</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+    <!-- contact details -->
+    <div class="row">
+        <div class="col s12">
+            <div class="glass-card glass-card-body">
+                <h5 class="white-text" style="margin-top: 0;">
+                    <i class="material-icons left" style="color: var(--stagesync-lime);">contact_support</i>
+                    Communication Channels
+                </h5>
+                <div class="clearfix"></div>
+                <hr style="border-color: rgba(255,255,255,0.08); margin: 20px 0;" />
 
-                        </div>
-                    </form>
+                <div class="responsive-table">
+                    <table class="highlight stagesync-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">CHANNEL</th>
+                                <th>DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong class="white-text">Email</strong></td>
+                                <td>support@stagesync.com</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="white-text">Hotline</strong></td>
+                                <td>+63 123 123 321</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="white-text">Control Room</strong></td>
+                                <td>Building 3, Studio Wing, Live Ops Floor</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- back home button -->
+    <div class="center-align" style="margin-top: 25px;">
+        <button type="button" class="btn waves-effect btn-lime" ng-click="redirectHomePage()" style="padding: 0 30px; height: 45px; line-height: 45px; font-weight: 700;">
+            <i class="material-icons left">arrow_back</i>
+            BACK TO HOME
+        </button>
+    </div>
+
 </div>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<!-- where my SSS (AKA HOLY SCRIPTS NI SIR) and also the materialize and my sweetalert -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - StageSync</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="~/Content/StageSyncStyle.css" />
+</head>
+<body ng-app="StageSyncModule" ng-controller="StageSyncController" ng-cloak>
+
+    <div class="stagesync-backdrop"></div>
+
+    <nav class="stagesync-navbar">
+        <div class="nav-wrapper container">
+            <a href="/Modules/LoginPage" class="brand-logo">StageSync</a>
+        </div>
+    </nav>
+
+    <main class="stagesync-main container" style="padding-top: 50px; padding-bottom: 50px;">
+        @RenderBody()
+    </main>
+
+    <footer class="stagesync-footer">
+        <div class="container center-align">
+            <span>&copy; 2026 StageSync. Command your show, cue by cue.</span>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/StageSyncScripts/Module.js"></script>
+    <script src="~/Scripts/StageSyncScripts/Service.js"></script>
+    <script src="~/Scripts/StageSyncScripts/Controller.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

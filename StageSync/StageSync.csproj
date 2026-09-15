@@ -150,6 +150,7 @@
     <Content Include="Content\Images\pexels-kelly-19452357.jpg" />
     <Content Include="Content\Images\Studio.jpg" />
     <Content Include="Content\Images\studios.png" />
+    <Content Include="Content\StageSyncStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -980,6 +981,7 @@
     <Content Include="Views\Modules\ContactPage.cshtml" />
     <Content Include="Views\Modules\RegistrationPage.cshtml" />
     <Content Include="Views\Shared\_StageSyncLayout.cshtml" />
+    <Content Include="Views\Shared\_AuthStageSyncLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
