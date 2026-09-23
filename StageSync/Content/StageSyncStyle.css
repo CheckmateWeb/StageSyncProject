@@ -1,4 +1,9 @@
-﻿:root {
+﻿* {
+    padding: 0px;
+    margin: 0px;
+}
+
+:root {
     --stagesync-bg-deep: #09090b;
     --stagesync-bg-charcoal: #121212;
     --stagesync-bg-panel: #18181b;
@@ -29,8 +34,6 @@ body {
 
 .stagesync-main {
     flex: 1 0 auto;
-    padding-top: 15px !important;
-    padding-bottom: 25px !important;
 }
 
 /* Base Dynamic Backdrop Setup */
@@ -53,24 +56,24 @@ body {
     }
 
     /* Page Background Assignments */
-    .stagesync-backdrop.bg-home {
-        background-image: url('../Images/concert.jpg'), url('/Images/concert.jpg');
+    .bg-home {
+        background:url(Images/concert.jpg) ;
     }
 
-    .stagesync-backdrop.bg-login {
-        background-image: url('../Images/guitar.jpg'), url('/Images/guitar.jpg');
+    .bg-login {
+        background: url(Images/pexels-kelly-19452357.jpg);
     }
 
-    .stagesync-backdrop.bg-register {
-        background-image: url('../Images/pexels-kelly-19452357.jpg'), url('/Images/pexels-kelly-19452357.jpg');
+    .bg-register {
+        background-image: url('Images/studios.png');
     }
 
-    .stagesync-backdrop.bg-about {
-        background-image: url('../Images/Studio.jpg'), url('/Images/Studio.jpg');
+    .bg-about {
+        background: url(Images/guitar.jpg);
     }
 
-    .stagesync-backdrop.bg-contact {
-        background-image: url('../Images/studios.png'), url('/Images/studios.png');
+    .bg-contact {
+        background: url(Images/studios.jpg);
     }
 
 /* Header & Navbar Styling */
@@ -133,13 +136,18 @@ nav.stagesync-navbar {
 
 /* Hero Section */
 .hero-container {
-    min-height: calc(100vh - 64px);
+
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    width: 100vw;
+    min-height: calc(100vh);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    box-sizing: border-box;
 }
 
 .hero-title {
@@ -325,4 +333,11 @@ footer.stagesync-footer {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
+}
+
+.bg {
+    background: url(Images/concert.jpg);
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
 }

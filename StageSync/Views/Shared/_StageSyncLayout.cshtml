@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title - StageSync</title>
 
+    <link rel="stylesheet" href="~/Content/StageSyncStyle.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <link rel="stylesheet" href="~/Content/StageSyncStyle.css" />
+
 </head>
 <body ng-app="StageSyncModule" ng-controller="StageSyncController" ng-cloak>
 
@@ -32,50 +33,50 @@
     </nav>
 
     <!-- main body content container -->
-    <main class="stagesync-main container">
+    <main class="stagesync-main">
         @RenderBody()
     </main>
 
-  <!-- footer -->
-  <footer class="stagesync-footer">
-      <div class="container">
-          <div class="row" style="margin-bottom: 0;">
-                
-              <!-- brand and tagline -->
-              <div class="col s12 m6 l7" style="margin-bottom: 20px;">
-                  <h5 style="color: var(--stagesync-lime); font-weight: 800; margin-top: 0; letter-spacing: 1px;">
-                      StageSync
-                  </h5>
-                  <p style="color: var(--stagesync-slate-dim); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                      Command your show, cue by cue. Professional performance, venue, and rehearsal studio operations management.
-                  </p>
-              </div>
+    <!-- footer -->
+    <footer class="stagesync-footer">
+        <div class="container">
+            <div class="row" style="margin-bottom: 0;">
 
-              <!-- footer direct link and also that is beside the tagline/brand -->
-              <div class="col s12 m6 l5" style="margin-bottom: 20px;">
-                  <h6 style="color: var(--stagesync-white); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-top: 0;">
-                      Quick Links
-                  </h6>
-                  <ul style="margin: 10px 0 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; list-style: none;">
-                      <li><a href="/Modules/HomePage">Home Console</a></li>
-                      <li><a href="/Modules/AboutPage">About System</a></li>
-                      <li><a href="/Modules/ContactPage">Get in Touch</a></li>
-                      <li><a href="/Modules/RegistrationPage">Performer Register</a></li>
-                  </ul>
-              </div>
+                <!-- brand and tagline -->
+                <div class="col s12 m6 l7" style="margin-bottom: 20px;">
+                    <h5 style="color: var(--stagesync-lime); font-weight: 800; margin-top: 0; letter-spacing: 1px;">
+                        StageSync
+                    </h5>
+                    <p style="color: var(--stagesync-slate-dim); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                        Command your show, cue by cue. Professional performance, venue, and rehearsal studio operations management.
+                    </p>
+                </div>
 
-          </div>
+                <!-- footer direct link and also that is beside the tagline/brand -->
+                <div class="col s12 m6 l5" style="margin-bottom: 20px;">
+                    <h6 style="color: var(--stagesync-white); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-top: 0;">
+                        Quick Links
+                    </h6>
+                    <ul style="margin: 10px 0 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; list-style: none;">
+                        <li><a href="/Modules/HomePage">Home Console</a></li>
+                        <li><a href="/Modules/AboutPage">About System</a></li>
+                        <li><a href="/Modules/ContactPage">Get in Touch</a></li>
+                        <li><a href="/Modules/RegistrationPage">Performer Register</a></li>
+                    </ul>
+                </div>
 
-          <hr style="border-color: rgba(255, 255, 255, 0.08); margin: 15px 0;" />
+            </div>
 
-          <!-- its da copyright bar -->
-          <div class="row" style="margin-bottom: 0;">
-              <div class="col s12 center-align" style="font-size: 0.8rem; color: var(--stagesync-slate-dim);">
-                  &copy; 2026 StageSync Production Systems. All rights reserved.
-              </div>
-          </div>
-      </div>
-  </footer>
+            <hr style="border-color: rgba(255, 255, 255, 0.08); margin: 15px 0;" />
+
+            <!-- its da copyright bar -->
+            <div class="row" style="margin-bottom: 0;">
+                <div class="col s12 center-align" style="font-size: 0.8rem; color: var(--stagesync-slate-dim);">
+                    &copy; 2026 StageSync Production Systems. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
     <!-- SCRIPTS -->

@@ -2,7 +2,8 @@
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
 }
 
-<div class="container page-container" style="padding-top: 40px; padding-bottom: 50px;">
+<div class=" hero-container bg-about" style="padding-top: 40px; padding-bottom: 50px;">
+
 
     <!-- header -->
     <div class="row">
@@ -31,7 +32,7 @@
                 <div class="clearfix"></div>
                 <hr style="border-color: rgba(255,255,255,0.08); margin: 20px 0;" />
 
-                <!-- USERNAME & PERFORMER TYPE -->
+                <!-- Username and the prformer type -->
                 <div class="row">
                     <div class="input-field col s12 m6 stagesync-input">
                         <input id="username" type="text" ng-model="user.username" maxlength="20" />
@@ -102,7 +103,7 @@
                     </div>
                 </div>
 
-                <!-- buttoons -->
+                <!-- buttons -->
                 <div class="right-align" style="margin-top: 20px;">
                     <button type="button" class="btn waves-effect btn-outline-lime" ng-click="clearFunc()" style="margin-right: 10px;">
                         <i class="material-icons left">clear</i>
@@ -159,12 +160,19 @@
                                 </td>
                                 <td>{{udata.email}}</td>
                                 <td>{{udata.contactno}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-small btn-edit" ng-click="editFunc(udata)">
-                                        <i class="material-icons">edit</i>
+                                <td style="white-space: nowrap;">
+                                    <button type="button"
+                                            ng-click="editFunc(udata)"
+                                            title="Edit"
+                                            style="background: transparent; border: 1px solid #8bc34a; color: #8bc34a; border-radius: 6px; padding: 4px 8px; cursor: pointer; margin-right: 6px; transition: 0.2s;">
+                                        <i class="material-icons" style="font-size: 1.1rem; vertical-align: middle;">edit</i>
                                     </button>
-                                    <button type="button" class="btn btn-small btn-delete" ng-click="deleteFunc(udata.id)">
-                                        <i class="material-icons">delete</i>
+
+                                    <button type="button"
+                                            ng-click="deleteFunc(udata.id)"
+                                            title="Delete"
+                                            style="background: transparent; border: 1px solid #e53935; color: #e53935; border-radius: 6px; padding: 4px 8px; cursor: pointer; transition: 0.2s;">
+                                        <i class="material-icons" style="font-size: 1.1rem; vertical-align: middle;">delete</i>
                                     </button>
                                 </td>
                             </tr>
@@ -192,8 +200,8 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var selects = document.querySelectorAll("select");
-        M.FormSelect.init(selects);
-    });
+        document.addEventListener("DOMContentLoaded", function () {
+            var selects = document.querySelectorAll("select");
+            M.FormSelect.init(selects);
+        });
 </script>
