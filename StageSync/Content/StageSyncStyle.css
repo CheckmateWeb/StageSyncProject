@@ -1,18 +1,34 @@
-﻿* {
+﻿/* ==========================================================================
+   STAGESYNC MODERN WHITE STUDIO THEME
+   Target Framework: ASP.NET MVC Razor / AngularJS / Materialize CSS
+   ========================================================================== */
+
+/* Import Modern Typography */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
+
+* {
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
 }
 
 :root {
-    --stagesync-bg-deep: #09090b;
-    --stagesync-bg-charcoal: #121212;
-    --stagesync-bg-panel: #18181b;
-    --stagesync-lime: #8bc34a;
-    --stagesync-white: #ffffff;
-    --stagesync-slate: #cfd8dc;
-    --stagesync-slate-dim: #b0bec5;
-    --stagesync-edit: #0284c7;
-    --stagesync-delete: #e53935;
+    --stagesync-bg-deep: #f8fafc;
+    --stagesync-bg-charcoal: #ffffff;
+    --stagesync-bg-panel: #ffffff;
+    --stagesync-lime: #0f172a; /* Primary Dark Charcoal/Navy Accent */
+    --stagesync-lime-hover: #1e293b;
+    --stagesync-white: #0f172a; /* Text Main Color */
+    --stagesync-slate: #1e293b; /* High-Contrast Body & Table Text */
+    --stagesync-slate-dim: #475569; /* High-Contrast Subtitles & Labels */
+    --stagesync-edit: #2563eb; /* Modern Blue Edit Action */
+    --stagesync-delete: #ef4444; /* Soft Red Delete Action */
+
+    --stagesync-glass-bg: rgba(255, 255, 255, 0.92);
+    --stagesync-border-light: rgba(226, 232, 240, 0.85);
+    --stagesync-shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.25);
+    --stagesync-shadow-btn: 0 10px 20px -5px rgba(15, 23, 42, 0.3);
+    --stagesync-gradient-heading: linear-gradient(135deg, #0f172a 0%, #475569 100%);
 }
 
 /* Base Page Resets */
@@ -24,19 +40,22 @@ html, body {
 }
 
 body {
-    background-color: var(--stagesync-bg-deep);
-    color: var(--stagesync-white);
+    background-color: var(--stagesync-bg-deep) !important;
+    color: var(--stagesync-white) !important;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
 }
 
 .stagesync-main {
     flex: 1 0 auto;
 }
 
-/* Base Dynamic Backdrop Setup */
+/* ==========================================================================
+   DYNAMIC BACKDROP & BACKGROUND PHOTOS
+   ========================================================================== */
 .stagesync-backdrop {
     position: fixed;
     inset: 0;
@@ -44,7 +63,6 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-color: var(--stagesync-bg-charcoal);
     transition: background-image 0.4s ease-in-out;
 }
 
@@ -52,112 +70,137 @@ body {
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 50% 0%, rgba(139,195,74,0.08), transparent 60%), linear-gradient(rgba(9, 9, 11, 0.65), rgba(9, 9, 11, 0.75));
+        background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), transparent 70%), linear-gradient(rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.50)) !important;
     }
 
-    /* Page Background Assignments */
-    .bg-home {
-        background:url(Images/concert.jpg) ;
-    }
+/* Page Background Assignments */
+.bg-home {
+    background: url(Images/concert.jpg) !important;
+}
 
-    .bg-login {
-        background: url(Images/pexels-kelly-19452357.jpg);
-    }
+.bg-login {
+    background: url(Images/pexels-kelly-19452357.jpg) !important;
+}
 
-    .bg-register {
-        background-image: url('Images/studios.png');
-    }
+.bg-register {
+    background-image: url('Images/studios.png') !important;
+}
 
-    .bg-about {
-        background: url(Images/guitar.jpg);
-    }
+.bg-about {
+    background: url(Images/guitar.jpg) !important;
+}
 
-    .bg-contact {
-        background: url(Images/studios.jpg);
-    }
+.bg-contact {
+    background: url(Images/studios.jpg) !important;
+}
 
-/* Header & Navbar Styling */
-nav.stagesync-navbar {
-    background-color: rgba(9, 9, 11, 0.85) !important;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+/* ==========================================================================
+   HEADER & NAVBAR (Clean White Glass & White Sign In Text)
+   ========================================================================== */
+nav, nav.stagesync-navbar, .navbar-fixed nav {
+    background-color: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid var(--stagesync-border-light) !important;
     border-top: none !important;
-    box-shadow: none !important;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    height: 64px;
-    line-height: 64px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 999 !important;
+    height: 70px !important;
+    line-height: 70px !important;
 }
 
-.stagesync-navbar .brand-logo {
-    color: var(--stagesync-lime) !important;
-    font-weight: 900 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
-    font-size: 1.6rem !important;
-    height: 64px;
-    line-height: 64px;
-    position: relative;
-}
-
-.stagesync-navbar li a {
-    color: var(--stagesync-slate) !important;
-    transition: color 0.2s ease;
-    font-size: 0.9rem;
-}
-
-    .stagesync-navbar li a:hover {
-        color: var(--stagesync-lime) !important;
-        background-color: transparent !important;
+    .stagesync-navbar .brand-logo, nav .brand-logo {
+        font-family: 'Syne', sans-serif !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: -0.5px !important;
+        font-size: 1.6rem !important;
+        height: 70px !important;
+        line-height: 70px !important;
+        position: relative;
+        background: var(--stagesync-gradient-heading) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        display: inline-block;
     }
+
+    .stagesync-navbar li a, nav ul a {
+        color: #475569 !important;
+        transition: color 0.2s ease, background-color 0.2s ease !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+    }
+
+        .stagesync-navbar li a:hover, nav ul a:hover {
+            color: var(--stagesync-lime) !important;
+            background-color: rgba(15, 23, 42, 0.04) !important;
+        }
 
 .nav-signin-item {
     display: flex;
     align-items: center;
-    height: 64px;
+    height: 70px !important;
 }
 
-.btn-nav-signin {
-    background-color: var(--stagesync-lime) !important;
-    color: var(--stagesync-bg-deep) !important;
+/* Force PURE WHITE TEXT for Sign In Button */
+.btn-nav-signin, nav .btn-signin, nav ul a.btn-nav-signin, nav ul a.btn-signin {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
     font-weight: 700 !important;
     border-radius: 999px !important;
     padding: 0 24px !important;
     height: 38px !important;
     line-height: 38px !important;
-    text-transform: none !important;
-    box-shadow: 0 2px 10px rgba(139, 195, 74, 0.3);
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: var(--stagesync-shadow-btn) !important;
+    transition: transform 0.2s ease, background-color 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-    .btn-nav-signin:hover {
-        box-shadow: 0 0 15px rgba(139, 195, 74, 0.65);
+    .btn-nav-signin:hover, nav .btn-signin:hover, nav ul a.btn-nav-signin:hover {
+        background-color: #1e293b !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 12px 24px -5px rgba(15, 23, 42, 0.4) !important;
     }
 
-/* Hero Section */
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
 .hero-container {
-
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 100vw;
-    min-height: calc(100vh);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     box-sizing: border-box;
+    padding-top: 70px;
 }
 
 .hero-title {
-    color: var(--stagesync-white);
-    font-size: 3.8rem;
-    font-weight: 900;
-    letter-spacing: 3px;
+    font-family: 'Syne', sans-serif !important;
+    color: #ffffff !important;
+    font-size: 3.8rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -1px !important;
     margin: 0;
     text-transform: uppercase;
     line-height: 1.15;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
 }
 
 .btn-hero-register {
@@ -169,60 +212,238 @@ nav.stagesync-navbar {
     font-weight: 800 !important;
 }
 
-/* Card Styling */
-.glass-card {
-    background: rgba(20, 20, 22, 0.85);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.55);
-    backdrop-filter: blur(10px);
+/* ==========================================================================
+   CARDS, BANNERS & FROSTED GLASS PANELS
+   ========================================================================== */
+.glass-card, .card, .card-panel {
+    background: var(--stagesync-glass-bg) !important;
+    border: 1px solid var(--stagesync-border-light) !important;
+    border-radius: 24px !important;
+    box-shadow: var(--stagesync-shadow-card) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     overflow: hidden;
     margin-top: 5px !important;
+    color: var(--stagesync-white) !important;
 }
 
 .glass-card-header {
-    background: linear-gradient(135deg, rgba(139,195,74,0.15), rgba(9,9,11,0.4));
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 16px 20px;
+    background: transparent !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 20px 24px !important;
 }
 
-    .glass-card-header h4, .glass-card-header h5 {
-        color: var(--stagesync-white);
+    /* High Contrast Card Titles & Subtitles */
+    .glass-card h1, .glass-card h2, .glass-card h3, .glass-card h4, .glass-card h5,
+    .glass-card-header h1, .glass-card-header h2, .glass-card-header h3, .glass-card-header h4, .glass-card-header h5,
+    .card-title, .panel-title {
+        font-family: 'Syne', sans-serif !important;
+        color: #0f172a !important;
         margin: 0;
-        font-weight: 800;
+        font-weight: 800 !important;
     }
 
-    .glass-card-header p {
-        color: var(--stagesync-slate-dim);
+    .glass-card p, .glass-card-header p, .glass-card span, .card p {
+        color: #475569 !important;
         margin: 4px 0 0;
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
     }
 
 .glass-card-body {
-    padding: 20px;
+    padding: 28px 24px !important;
 }
 
-/* Form Fields */
-.stagesync-input input, .stagesync-input textarea, .stagesync-input select {
-    color: var(--stagesync-white) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+/* Top Banner Header Overrides */
+.hero-container > div,
+.registration-header,
+.page-title-card,
+div[class*="header"] {
+    margin-top: 20px !important;
 }
 
-.stagesync-input label {
-    color: var(--stagesync-slate-dim) !important;
+    .registration-header p,
+    .page-title-card p,
+    .hero-container p,
+    .hero-container span {
+        color: #475569 !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        opacity: 1 !important;
+    }
+
+    .registration-header h1,
+    .registration-header h2,
+    .registration-header h3,
+    .page-title-card h1,
+    .page-title-card h2,
+    .page-title-card h3 {
+        color: #0f172a !important;
+        font-weight: 800 !important;
+    }
+
+    /* About Page Header Description High Contrast Fix */
+    .glass-card p,
+    .glass-card-header p,
+    .about-header p,
+    .page-title-card p,
+    div[class*="about"] p,
+    div[class*="header"] p {
+        color: #334155 !important; /* Solid Dark Slate */
+        -webkit-text-fill-color: #334155 !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        opacity: 1 !important;
+    }
+
+/* ==========================================================================
+   ABOUT & CONTACT PAGES: ULTRA-HIGH CONTRAST TABLE OVERRIDES
+   ========================================================================== */
+.stagesync-table, table, .glass-card table {
+    background: transparent !important;
+    width: 100% !important;
 }
 
-.stagesync-input input:focus, .stagesync-input textarea:focus {
-    border-bottom: 1px solid var(--stagesync-lime) !important;
+    /* Table Headers (FEATURE / TECH, DESCRIPTION, CHANNEL, DETAILS) */
+    .stagesync-table thead th, table thead th, table th, .glass-card table th {
+        color: #0f172a !important;
+        border-bottom: 2px solid #cbd5e1 !important;
+        font-size: 0.85rem !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+        padding: 14px 16px !important;
+    }
+
+    /* Left Table Column / Labels (System Purpose, Backend, Frontend, Theme, Email, Hotline, Control Room) */
+    .stagesync-table tbody tr td:first-child,
+    table tbody tr td:first-child,
+    table td:first-child,
+    .stagesync-table td strong,
+    table td strong,
+    .glass-card table td:first-child,
+    .glass-card table tr td:first-child,
+    table tr td.white-text,
+    table tr td span {
+        color: #0f172a !important; /* Forces solid dark charcoal over white text overrides */
+        -webkit-text-fill-color: #0f172a !important;
+        font-weight: 800 !important;
+        font-size: 0.95rem !important;
+        opacity: 1 !important;
+    }
+
+    /* Right Table Column Descriptions & Values */
+    .stagesync-table tbody tr td:last-child,
+    table tbody tr td:last-child,
+    table td:last-child,
+    .glass-card table td:last-child {
+        color: #1e293b !important;
+        -webkit-text-fill-color: #1e293b !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+    }
+
+    /* Row Hover State */
+    .stagesync-table tbody tr:hover,
+    table tbody tr:hover {
+        background: rgba(241, 245, 249, 0.9) !important;
+    }
+
+/* Icon Color (i icon, question mark icon) */
+.glass-card i, .card i, .material-icons {
+    color: #0f172a !important;
+}
+
+/* ==========================================================================
+   FORM CONTROLS, INPUTS & DROPDOWNS
+   ========================================================================== */
+.stagesync-input input,
+.stagesync-input textarea,
+.stagesync-input select,
+.input-field input,
+.input-field textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid #cbd5e1 !important;
+}
+
+::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+.stagesync-input label,
+.input-field label,
+label {
+    color: #475569 !important;
+    font-weight: 600 !important;
+}
+
+    /* 1. Prevent Unfocused Input Labels from Overlapping the Underline */
+    .input-field label:not(.active),
+    .stagesync-input label:not(.active) {
+        font-size: 0.8rem !important; /* Slightly smaller text so long labels fit */
+        transform: translateY(-8px) !important; /* Shifts resting label position upward away from line */
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: calc(100% - 40px) !important; /* Leaves room for eye icon */
+    }
+
+    /* Ensure Focused/Active Labels Lift High Above the Line Cleanly */
+    .input-field label.active,
+    .stagesync-input label.active,
+    .input-field input:focus + label,
+    .stagesync-input input:focus + label {
+        transform: translateY(-24px) scale(0.85) !important;
+        font-size: 0.9rem !important;
+        color: #0f172a !important;
+        font-weight: 700 !important;
+    }
+
+/* Prevent Padding Collision with Right-Aligned Eye Toggle Icons */
+.input-field input[type="password"],
+.stagesync-input input[type="password"] {
+    padding-right: 40px !important;
+}
+
+.stagesync-input input:focus,
+.stagesync-input textarea:focus,
+.input-field input:focus {
+    border-bottom: 2px solid var(--stagesync-lime) !important;
     box-shadow: 0 1px 0 0 var(--stagesync-lime) !important;
 }
 
-    .stagesync-input input:focus + label, .stagesync-input textarea:focus + label {
-        color: var(--stagesync-lime) !important;
+.stagesync-input select,
+.input-field select,
+select {
+    color: #0f172a !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+}
+
+    .stagesync-input select option {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
     }
 
-.stagesync-input select option {
-    background-color: var(--stagesync-bg-panel);
-    color: var(--stagesync-white);
+.select-wrapper input.select-dropdown {
+    color: #0f172a !important;
+    border-bottom: 2px solid #cbd5e1 !important;
+    font-weight: 600 !important;
+}
+
+.dropdown-content li > span {
+    color: #0f172a !important;
+    font-weight: 600 !important;
 }
 
 input[type="password"]::-ms-reveal,
@@ -232,92 +453,98 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     display: none !important;
 }
 
-/* Buttons */
-.btn-lime {
+/* ==========================================================================
+   BUTTONS & BUTTON ICONS
+   ========================================================================== */
+.btn-lime, .btn, .btn-large {
     background-color: var(--stagesync-lime) !important;
-    color: #09090b !important;
-    border-radius: 999px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    transition: box-shadow 0.25s ease, transform 0.15s ease;
+    color: #ffffff !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    box-shadow: var(--stagesync-shadow-btn) !important;
+    transition: box-shadow 0.25s ease, transform 0.15s ease, background-color 0.2s ease !important;
 }
 
-    .btn-lime:hover {
-        box-shadow: 0 0 20px rgba(139,195,74,0.65);
-        transform: translateY(-1px);
+    .btn-lime:hover, .btn:hover, .btn-large:hover {
+        background-color: var(--stagesync-lime-hover) !important;
+        box-shadow: 0 14px 24px -6px rgba(15, 23, 42, 0.4) !important;
+        transform: translateY(-2px) !important;
     }
 
-.btn-outline-lime {
+    /* 2. Make Button Icons (User / Plus Icon) Pure White & Visible */
+    .btn i,
+    .btn-large i,
+    .btn-lime i,
+    button i,
+    .btn .material-icons,
+    button .material-icons {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        vertical-align: middle !important;
+        margin-right: 6px !important;
+    }
+
+.btn-outline-lime, .btn-flat, .btn-clear, button[type="reset"] {
     background-color: transparent !important;
-    border: 1px solid rgba(139,195,74,0.5);
-    color: var(--stagesync-lime) !important;
-    border-radius: 999px;
+    border: 1px solid #cbd5e1 !important;
+    color: #475569 !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
 }
 
-    .btn-outline-lime:hover {
-        background-color: rgba(139,195,74,0.1) !important;
+    .btn-outline-lime:hover, .btn-flat:hover, .btn-clear:hover {
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
     }
 
 .btn-edit {
     background-color: var(--stagesync-edit) !important;
     color: #ffffff !important;
-    border-radius: 999px;
-    margin-right: 6px;
+    border-radius: 999px !important;
+    margin-right: 6px !important;
+    font-weight: 600 !important;
 }
 
 .btn-delete {
     background-color: var(--stagesync-delete) !important;
     color: #ffffff !important;
-    border-radius: 999px;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
 }
 
-/* Table */
-.stagesync-table {
-    background: transparent;
-}
-
-    .stagesync-table thead th {
-        color: var(--stagesync-lime);
-        border-bottom: 1px solid rgba(255,255,255,0.12);
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .stagesync-table tbody td {
-        color: var(--stagesync-slate);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .stagesync-table tbody tr:hover {
-        background: rgba(139,195,74,0.05);
-    }
-
-/* Footer Below Fold */
-footer.stagesync-footer {
-    background-color: rgba(9, 9, 11, 0.95);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    color: var(--stagesync-slate-dim);
-    padding: 20px 0 14px 0;
+/* ==========================================================================
+   FOOTER (White Glass)
+   ========================================================================== */
+footer, footer.stagesync-footer, .page-footer {
+    background-color: rgba(255, 255, 255, 0.92) !important;
+    border-top: 1px solid var(--stagesync-border-light) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    color: var(--stagesync-slate-dim) !important;
+    padding: 30px 0 20px 0 !important;
     flex-shrink: 0;
 }
 
-    footer.stagesync-footer ul {
+    footer ul, footer.stagesync-footer ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
     }
 
-        footer.stagesync-footer ul li a {
-            color: var(--stagesync-slate-dim);
-            transition: color 0.2s ease;
-            text-decoration: none;
-            font-size: 0.85rem;
+        footer a, footer.stagesync-footer ul li a {
+            color: var(--stagesync-slate-dim) !important;
+            transition: color 0.2s ease !important;
+            text-decoration: none !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
         }
 
-            footer.stagesync-footer ul li a:hover {
-                color: var(--stagesync-lime);
+            footer a:hover, footer.stagesync-footer ul li a:hover {
+                color: var(--stagesync-lime) !important;
             }
 
 .footer-links-inline {
@@ -327,8 +554,12 @@ footer.stagesync-footer {
 }
 
 .stagesync-title {
-    color: var(--stagesync-lime);
-    font-weight: 600;
+    font-family: 'Syne', sans-serif !important;
+    background: var(--stagesync-gradient-heading) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800 !important;
+    font-size: 1.4rem !important;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -336,8 +567,7 @@ footer.stagesync-footer {
 }
 
 .bg {
-    background: url(Images/concert.jpg);
+    background: url(Images/concert.jpg) !important;
     width: 100vw;
     height: 100vh;
-    background-color: red;
 }

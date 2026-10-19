@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StageSync design reference</title>
+<!--
+  VISUAL REFERENCE ONLY. Not production code and not part of the app.
+  Static mock of the target design for the WHOLE StageSync site:
+    Part 1: Admin Console dashboard
+    Part 2: public pages (navbar, hero, About, Registration, Login) and the shared footer
+  Open it in a browser, then copy the look (colors, fonts, spacing, radii, shadows,
+  component styles) into the real pages. Do not copy the fake data and do not ship this file.
+  Every color, font and size lives in the :root tokens and the .dsh, .pubdemo and .sitefoot rules.
+  The dark gradient behind the public mock only stands in for the real background photos.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+* { box-sizing: border-box; }
+:root { --line: #dfe6ea; }
+body { margin: 0; background: #e4eaef; }
+.page { max-width: 1240px; margin: 0 auto; padding: 24px 16px 56px; display: grid; gap: 28px; }
+.label { font-family: "Inter", system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #475569; margin: 0 0 10px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+/* ---------- Admin dashboard mockup: the new StageSync design (light workspace, deep teal, Syne + Inter) ---------- */
+:root {
+  --d-bg: #eef3f7;
+  --d-card: #ffffff;
+  --d-border: #e3e9ee;
+  --d-ink: #0f1b2d;
+  --d-text: #4a5868;
+  --d-muted: #7a8795;
+  --d-primary: #1f5c52;
+  --d-tint: #e3f1ee;
+  --d-track: #e8eef1;
+  --d-orange: #e8590c;
+  --d-orange-ink: #c2410c;
+  --d-orange-tint: #fdeec9;
+  --d-green: #1a7f4b;
+  --d-green-tint: #e4f5ec;
+  --d-red: #ef4444;
+  --d-purple: #7c3aed;
+  --d-purple-tint: #efe7fd;
+  --d-night: #111827;
+  --d-display: "Syne", "Segoe UI", system-ui, sans-serif;
+  --d-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --d-shadow: 0 1px 2px rgba(15, 27, 45, 0.04), 0 6px 18px rgba(15, 27, 45, 0.05);
+}
+.dsh {
+  position: relative; display: grid; grid-template-columns: 236px minmax(0, 1fr);
+  border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+  background: var(--d-bg); font-family: var(--d-body); color: var(--d-text); font-size: 14px; line-height: 1.5;
+}
+.dsh > * { min-width: 0; }
+.dsh p, .dsh h3, .dsh h4, .dsh h5 { margin: 0; max-width: none; }
+.dsh .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.dsh .ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dsh .ic.s { width: 14px; height: 14px; }
+
+/* left menu */
+.dsh-side { background: var(--d-card); border-right: 1px solid var(--d-border); padding: 20px 14px; display: flex; flex-direction: column; gap: 24px; }
+.dsh-logo { display: flex; gap: 12px; align-items: center; padding: 0 6px; }
+.logo-dot { width: 38px; height: 38px; border-radius: 50%; background: var(--d-primary); color: #ffffff; display: grid; place-items: center; flex: none; }
+.dsh-logo b { display: block; font-family: var(--d-display); font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: var(--d-primary); line-height: 1.15; }
+.dsh-logo small { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--d-muted); font-weight: 600; }
+.dsh-side nav { display: grid; gap: 4px; }
+.dsh-side nav span { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 12px; color: var(--d-text); font-weight: 500; white-space: nowrap; }
+.dsh-side nav span.on { background: var(--d-tint); color: var(--d-primary); font-weight: 700; }
+.badge { margin-left: auto; font-style: normal; font-size: 0.7rem; font-weight: 700; min-width: 24px; padding: 2px 8px; border-radius: 999px; background: #eef1f4; color: #475569; text-align: center; }
+.badge.warn { background: var(--d-orange-tint); color: #a35a00; }
+.dsh-user { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--d-border); border-radius: 14px; box-shadow: 0 2px 8px rgba(15, 27, 45, 0.05); }
+.dsh-user b { display: block; font-size: 0.8rem; color: var(--d-ink); line-height: 1.2; }
+.dsh-user small { display: block; font-size: 0.66rem; color: var(--d-muted); font-weight: 600; }
+.dsh-user .ic { margin-left: auto; color: var(--d-muted); }
+.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--d-tint); color: var(--d-primary); font-weight: 800; font-size: 0.76rem; display: grid; place-items: center; border: 1px solid #c9e0db; flex: none; }
+
+/* main area */
+.dsh-main { padding: 16px 22px 24px; display: grid; gap: 18px; align-content: start; }
+.dsh-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.search { flex: 1 1 240px; max-width: 360px; display: flex; gap: 10px; align-items: center; background: #e9eef3; border: 1px solid var(--d-border); border-radius: 12px; padding: 10px 14px; color: var(--d-muted); font-size: 0.82rem; min-width: 0; }
+.search span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.online { display: inline-flex; gap: 8px; align-items: center; background: var(--d-green-tint); border: 1px solid #cdebd9; color: #17703f; padding: 6px 14px; border-radius: 999px; font-size: 0.74rem; font-weight: 600; }
+.online i { width: 7px; height: 7px; border-radius: 50%; background: #1fb15f; }
+.bell { position: relative; width: 32px; height: 32px; display: grid; place-items: center; color: #475569; }
+.bell i { position: absolute; top: 3px; right: 5px; width: 8px; height: 8px; border-radius: 50%; background: #f97316; border: 1.5px solid var(--d-bg); }
+.dsh-title { display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; }
+.dsh h3 { font-family: var(--d-display); font-weight: 800; color: var(--d-ink); text-transform: none; letter-spacing: -0.01em; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.08; text-wrap: balance; }
+.dsh-title p { margin-top: 8px; color: var(--d-muted); font-size: 0.92rem; }
+.primary-btn { display: inline-flex; gap: 8px; align-items: center; background: var(--d-primary); color: #ffffff; padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 0.88rem; box-shadow: 0 8px 18px rgba(31, 92, 82, 0.25); white-space: nowrap; }
+
+/* summary cards */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+.kpi { background: var(--d-card); border: 1px solid var(--d-border); border-radius: 16px; padding: 18px; display: grid; gap: 10px; box-shadow: var(--d-shadow); min-width: 0; }
+.kpi-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.kpi-top > span:first-child { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--d-muted); }
+.kpi-ic { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--d-tint); color: var(--d-primary); }
+.kpi-val { display: flex; align-items: baseline; gap: 8px; }
+.kpi-val b { font-family: var(--d-display); font-weight: 800; font-size: 2.1rem; line-height: 1; color: var(--d-ink); font-variant-numeric: tabular-nums; }
+.kpi-val span { color: var(--d-muted); font-size: 0.88rem; }
+.kpi-note { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; }
+.t-teal .kpi-note { color: var(--d-green); }
+.t-amber .kpi-ic { background: var(--d-orange-tint); color: var(--d-orange-ink); }
+.t-amber .kpi-val b, .t-amber .kpi-note { color: var(--d-orange-ink); }
+.t-green .kpi-ic { background: var(--d-green-tint); color: var(--d-green); }
+.t-green .kpi-val b { color: var(--d-primary); }
+.t-green .kpi-note { color: var(--d-green); }
+.t-purple .kpi-ic { background: var(--d-purple-tint); color: var(--d-purple); }
+.t-purple .kpi-note { color: var(--d-purple); }
+
+/* panels */
+.dsh-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.dsh-two.wide { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.dpanel { background: var(--d-card); border: 1px solid var(--d-border); border-radius: 16px; padding: 22px 24px; display: grid; gap: 18px; align-content: start; box-shadow: var(--d-shadow); min-width: 0; }
+.dpanel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.dpanel h4 { font-family: var(--d-body); font-weight: 700; font-size: 1.02rem; color: var(--d-ink); }
+.dpanel-head p { margin-top: 2px; color: var(--d-muted); font-size: 0.82rem; }
+.pill-mint { font-size: 0.7rem; font-weight: 600; background: var(--d-tint); color: var(--d-primary); padding: 4px 12px; border-radius: 999px; border: 1px solid #cfe6e1; white-space: nowrap; }
+.link { font-size: 0.74rem; font-weight: 700; color: var(--d-primary); display: inline-flex; gap: 4px; align-items: center; white-space: nowrap; }
+
+.dbars { display: grid; gap: 16px; }
+.dbar { display: grid; grid-template-columns: 84px minmax(0, 1fr) 22px; gap: 14px; align-items: center; font-size: 0.84rem; color: var(--d-text); }
+.dbar .trk { height: 8px; border-radius: 999px; background: var(--d-track); overflow: hidden; }
+.dbar .trk i { display: block; height: 100%; border-radius: 999px; }
+.dbar b { text-align: right; color: var(--d-ink); font-variant-numeric: tabular-nums; }
+
+/* tables */
+.scrollx { overflow-x: auto; border: 1px solid var(--d-border); border-radius: 12px; }
+.dsh table { width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0; font-size: 0.84rem; }
+.dsh th { background: #f1f6f5; color: var(--d-primary); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--d-border); white-space: nowrap; }
+.dsh td { color: var(--d-ink); padding: 13px 14px; border-bottom: 1px solid var(--d-border); vertical-align: middle; }
+.dsh tr:last-child td { border-bottom: 0; }
+.dsh td.dt { white-space: nowrap; color: var(--d-text); font-variant-numeric: tabular-nums; }
+.st { display: inline-block; padding: 3px 12px; border-radius: 999px; border: 1.5px solid currentColor; font-weight: 700; font-size: 0.72rem; white-space: nowrap; }
+.st.pending { color: var(--d-orange-ink); background: #fff4e8; }
+.st.approved { color: var(--d-primary); background: #e8f4f1; }
+.st.rejected { color: #dc2626; background: #fef0f0; }
+.act { display: inline-block; padding: 7px 14px; border-radius: 10px; background: var(--d-primary); color: #ffffff; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.act.ghost { background: #ffffff; color: var(--d-primary); border: 1.5px solid var(--d-primary); padding: 5.5px 13px; }
+
+/* activity and cues */
+.feed { list-style: none; margin: 0; padding: 0; display: grid; }
+.feed li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid var(--d-border); }
+.feed li:first-child { border-top: 0; padding-top: 0; }
+.feed b { display: block; font-size: 0.86rem; color: var(--d-ink); font-weight: 600; }
+.feed small { display: block; font-size: 0.74rem; color: var(--d-muted); }
+.feed time { font-size: 0.72rem; color: var(--d-muted); white-space: nowrap; }
+.fi { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--d-tint); color: var(--d-primary); }
+.fi.amber { background: var(--d-orange-tint); color: var(--d-orange-ink); }
+.fi.green { background: var(--d-green-tint); color: var(--d-green); }
+.cues { display: grid; gap: 12px; }
+.cue { background: #f3f6f9; border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.cue small { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--d-primary); }
+.cue b { display: block; color: var(--d-ink); font-size: 0.88rem; font-weight: 600; }
+.cq { font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
+.cq.approved { background: var(--d-green-tint); color: #17703f; }
+.cq.pending { background: var(--d-orange-tint); color: #a35a00; }
+.cue-foot { display: flex; justify-content: space-between; gap: 10px; font-size: 0.72rem; color: var(--d-muted); }
+.cue-foot b { color: var(--d-primary); font-weight: 700; }
+
+/* shared footer: the same component on every page */
+.sitefoot { background: var(--d-card); border: 1px solid var(--d-border); border-radius: 16px; padding: 22px 24px; display: grid; gap: 14px; box-shadow: var(--d-shadow); font-family: var(--d-body); color: var(--d-text); font-size: 0.86rem; }
+.sitefoot p { margin: 0; max-width: none; }
+.sf-row { display: flex; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+.sf-brand { max-width: 440px; }
+.sf-brand b { display: block; font-family: var(--d-display); font-weight: 800; font-size: 1.25rem; letter-spacing: 0.06em; color: var(--d-primary); margin-bottom: 6px; }
+.sf-links h5 { margin: 0 0 10px; font-family: var(--d-body); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--d-muted); font-weight: 700; }
+.sf-links div { display: flex; gap: 8px 20px; flex-wrap: wrap; }
+.sf-links span { color: var(--d-ink); font-weight: 500; }
+.sitefoot hr { border: 0; border-top: 1px solid var(--d-border); margin: 0; width: 100%; }
+.sf-copy { text-align: center; color: var(--d-muted); font-size: 0.8rem; }
+
+.sw { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 6px; vertical-align: -2px; border: 1px solid var(--line); }
+
+@media (max-width: 860px) {
+  .dsh { grid-template-columns: minmax(0, 1fr); }
+  .dsh-side { border-right: 0; border-bottom: 1px solid var(--d-border); padding: 16px; gap: 14px; }
+  .dsh-side nav { display: flex; overflow-x: auto; padding-bottom: 4px; }
+  .dsh-user { margin-top: 0; }
+  .dsh-two.wide { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) { .dsh-main { padding: 14px; } .dpanel { padding: 18px; } }
+
+/* ---------- Public pages (Home, About, Contact, Login, Registration) ---------- */
+.pubdemo { display: grid; gap: 28px; font-family: var(--d-body); color: var(--d-text); font-size: 14px; line-height: 1.5; }
+.pubdemo p, .pubdemo h2, .pubdemo h4 { margin: 0; max-width: none; }
+.pub-stage {
+  border-radius: 20px; overflow: hidden; display: grid; align-content: start;
+  background:
+    radial-gradient(620px 320px at 72% 18%, rgba(80, 110, 200, 0.55), transparent 70%),
+    linear-gradient(160deg, #10172b, #1b2a4a 60%, #0b1220);
+}
+.pub-note { color: #cbd5e1; font-size: 0.74rem; text-align: center; padding: 10px 16px 14px; }
+.pub-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 14px 28px; background: rgba(255, 255, 255, 0.97); border-bottom: 1px solid var(--d-border); }
+.pub-nav b { font-family: var(--d-display); font-weight: 800; letter-spacing: 0.1em; color: var(--d-primary); font-size: 1.25rem; }
+.pub-links { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; color: var(--d-ink); font-weight: 500; }
+.pub-links .signin { background: var(--d-primary); color: #ffffff; padding: 9px 22px; border-radius: 999px; font-weight: 700; }
+.pub-hero { text-align: center; padding: 80px 20px 90px; display: grid; gap: 26px; justify-items: center; }
+.pub-hero h2 { font-family: var(--d-display); font-weight: 800; color: #ffffff; font-size: clamp(2rem, 6vw, 3.3rem); letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.1; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
+.pub-cta { background: var(--d-primary); color: #ffffff; padding: 14px 30px; border-radius: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35); }
+.pub-stack { display: grid; gap: 16px; justify-items: center; padding: 34px 16px 40px; }
+.pub-card { width: min(100%, 600px); background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 24px 28px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); display: grid; gap: 14px; min-width: 0; }
+.pub-title { text-align: center; gap: 8px; }
+.pub-title h2 { font-family: var(--d-display); font-weight: 800; font-size: clamp(1.4rem, 4.4vw, 1.95rem); text-transform: uppercase; color: var(--d-ink); letter-spacing: 0.02em; }
+.pub-title h2 em { font-style: normal; color: var(--d-primary); }
+.pub-title p { color: var(--d-text); }
+.pub-card h4 { font-family: var(--d-body); font-weight: 700; font-size: 1.15rem; color: var(--d-ink); display: flex; align-items: center; gap: 12px; justify-content: center; }
+.pub-ico { width: 28px; height: 28px; border-radius: 50%; background: var(--d-tint); color: var(--d-primary); display: grid; place-items: center; font-weight: 800; font-size: 0.8rem; }
+.pub-sub { text-align: center; color: var(--d-muted); margin-top: -6px; }
+.pub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 22px; }
+.fld { border-bottom: 2px solid #cfd8de; padding: 14px 0 8px; color: var(--d-muted); font-size: 0.92rem; display: grid; gap: 2px; min-height: 52px; align-content: end; }
+.fld small { font-size: 0.86rem; }
+.fld span { color: var(--d-ink); font-weight: 500; }
+.fld.focus { border-bottom-color: var(--d-primary); }
+.fld.focus small { color: var(--d-primary); }
+.btnrow { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
+.pub-login .btnrow { justify-content: stretch; }
+.btn-p { flex: 2 1 120px; background: var(--d-primary); color: #ffffff; text-align: center; padding: 12px 20px; border-radius: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 8px 18px rgba(31, 92, 82, 0.25); }
+.btn-g { flex: 1 1 80px; color: var(--d-primary); background: #ffffff; border: 1.5px solid #cfe0dc; text-align: center; padding: 10.5px 20px; border-radius: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.pub-link { text-align: center; font-size: 0.85rem; }
+.pub-link b { color: var(--d-primary); }
+.pub-card table { min-width: 0; }
+.pub-card td b { font-weight: 700; }
+.sitefoot.flush { border-radius: 0; border-width: 1px 0 0; box-shadow: none; padding: 26px 28px; }
+.sitefoot.flush .sf-row { max-width: 1100px; margin-inline: auto; width: 100%; }
+@media (max-width: 560px) { .pub-grid { grid-template-columns: minmax(0, 1fr); } .pub-nav { padding: 12px 16px; } .pub-card { padding: 20px; } }
+
+</style>
+</head>
+<body>
+<div class="page">
+<div><p class="label">Part 1 · Admin Console dashboard</p>
+<div class="dsh" role="group" aria-label="Mockup of the StageSync admin dashboard">
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 0 0 6v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3a2 2 0 0 1 0-6V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1z"/><path d="M13 6v2M13 11v2M13 16v2"/></symbol>
+    <symbol id="i-stage" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3 1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8 1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11 3l1.8 4.7L17.5 9.5l-4.7 1.8L11 16l-1.8-4.7L4.5 9.5l4.7-1.8z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.5h.01"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16z"/><path d="M10 21h4"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></symbol>
+    <symbol id="i-userplus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-radio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4"/><path d="M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  </defs></svg>
+
+  <aside class="dsh-side">
+    <div class="dsh-logo">
+      <span class="logo-dot"><svg class="ic"><use href="#i-radio"/></svg></span>
+      <span><b>STAGESYNC</b><small>Studio Operations</small></span>
+    </div>
+    <nav aria-label="Console menu">
+      <span class="on"><svg class="ic"><use href="#i-grid"/></svg>Dashboard</span>
+      <span><svg class="ic"><use href="#i-users"/></svg>Performers<em class="badge">6</em></span>
+      <span><svg class="ic"><use href="#i-ticket"/></svg>Booking Requests<em class="badge warn">2</em></span>
+      <span><svg class="ic"><use href="#i-stage"/></svg>Stages &amp; Schedules</span>
+      <span><svg class="ic"><use href="#i-gear"/></svg>System Settings</span>
+    </nav>
+    <div class="dsh-user">
+      <span class="avatar">CM</span>
+      <span><b>Christian Mariveles</b><small>Admin Lead</small></span>
+      <svg class="ic"><use href="#i-logout"/></svg>
+    </div>
+  </aside>
+
+  <div class="dsh-main">
+    <div class="dsh-top">
+      <div class="search"><svg class="ic"><use href="#i-search"/></svg><span>Search performers, bookings, stage cues...</span></div>
+      <div class="row">
+        <span class="online"><i></i>Stage Control Online</span>
+        <span class="bell"><svg class="ic"><use href="#i-bell"/></svg><i></i></span>
+      </div>
+    </div>
+
+    <div class="dsh-title">
+      <div>
+        <h3>Operational Overview</h3>
+        <p>Real-time stats, performer capacity, and upcoming schedule status.</p>
+      </div>
+      <span class="primary-btn"><svg class="ic"><use href="#i-plus"/></svg>Add Performer</span>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi t-teal">
+        <div class="kpi-top"><span>Total performers</span><span class="kpi-ic"><svg class="ic"><use href="#i-users"/></svg></span></div>
+        <div class="kpi-val"><b>6</b><span>accounts</span></div>
+        <div class="kpi-note ok"><svg class="ic s"><use href="#i-trend"/></svg>+6 new this week</div>
+      </div>
+      <div class="kpi t-amber">
+        <div class="kpi-top"><span>Pending requests</span><span class="kpi-ic"><svg class="ic"><use href="#i-clock"/></svg></span></div>
+        <div class="kpi-val"><b>2</b><span>pending</span></div>
+        <div class="kpi-note"><svg class="ic s"><use href="#i-alert"/></svg>Requires decision</div>
+      </div>
+      <div class="kpi t-green">
+        <div class="kpi-top"><span>Approved bookings</span><span class="kpi-ic"><svg class="ic"><use href="#i-check"/></svg></span></div>
+        <div class="kpi-val"><b>2</b><span>confirmed</span></div>
+        <div class="kpi-note"><svg class="ic s"><use href="#i-cal"/></svg>Upcoming live shows</div>
+      </div>
+      <div class="kpi t-purple">
+        <div class="kpi-top"><span>Open time slots</span><span class="kpi-ic"><svg class="ic"><use href="#i-spark"/></svg></span></div>
+        <div class="kpi-val"><b>5</b><span>available</span></div>
+        <div class="kpi-note"><svg class="ic s"><use href="#i-layers"/></svg>Across 3 active stages</div>
+      </div>
+    </div>
+
+    <div class="dsh-two">
+      <div class="dpanel">
+        <div class="dpanel-head">
+          <div><h4>Booking Requests by Status</h4><p>Distribution of slot applications</p></div>
+          <span class="pill-mint">Live Feed</span>
+        </div>
+        <div class="dbars">
+          <div class="dbar"><span>Pending</span><span class="trk"><i style="width:100%;background:#e8590c"></i></span><b>2</b></div>
+          <div class="dbar"><span>Approved</span><span class="trk"><i style="width:100%;background:#1f5c52"></i></span><b>2</b></div>
+          <div class="dbar"><span>Rejected</span><span class="trk"><i style="width:50%;background:#ef4444"></i></span><b>1</b></div>
+          <div class="dbar"><span>Cancelled</span><span class="trk"><i style="width:50%;background:#111827"></i></span><b>1</b></div>
+        </div>
+      </div>
+      <div class="dpanel">
+        <div class="dpanel-head">
+          <div><h4>Performers by Type</h4><p>Registered talent directory mix</p></div>
+          <span class="link">View All<svg class="ic s"><use href="#i-arrow"/></svg></span>
+        </div>
+        <div class="dbars">
+          <div class="dbar"><span>Band</span><span class="trk"><i style="width:100%;background:#1f5c52"></i></span><b>2</b></div>
+          <div class="dbar"><span>Solo Artist</span><span class="trk"><i style="width:50%;background:#1f5c52"></i></span><b>1</b></div>
+          <div class="dbar"><span>DJ</span><span class="trk"><i style="width:50%;background:#1f5c52"></i></span><b>1</b></div>
+          <div class="dbar"><span>Prod. Crew</span><span class="trk"><i style="width:50%;background:#1f5c52"></i></span><b>1</b></div>
+          <div class="dbar"><span>Organizer</span><span class="trk"><i style="width:50%;background:#1f5c52"></i></span><b>1</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dpanel">
+      <div class="dpanel-head">
+        <div><h4>Recent Booking Requests</h4><p>Newest five, with a quick decision button</p></div>
+        <span class="link">View All<svg class="ic s"><use href="#i-arrow"/></svg></span>
+      </div>
+      <div class="scrollx"><table>
+        <thead><tr><th>Event</th><th>Performer</th><th>Stage</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Northline Community Night</td><td>Paolo Mendoza</td><td>Outdoor Pavilion</td><td class="dt">Nov 7, 4:00 PM</td><td><span class="st pending">Pending</span></td><td><span class="act">Review</span></td></tr>
+          <tr><td>Neon Saturdays DJ Night</td><td>Kaito Santos</td><td>Main Stage</td><td class="dt">Oct 25, 6:00 PM</td><td><span class="st pending">Pending</span></td><td><span class="act">Review</span></td></tr>
+          <tr><td>Low Tide Halloween Gig</td><td>Jerome Reyes</td><td>Main Stage</td><td class="dt">Oct 31, 7:00 PM</td><td><span class="st rejected">Rejected</span></td><td></td></tr>
+          <tr><td>Acoustic Rehearsal Session</td><td>Maria Villanueva</td><td>Rehearsal Studio A</td><td class="dt">Oct 22, 10:00 AM</td><td><span class="st approved">Approved</span></td><td></td></tr>
+          <tr><td>Midnight Static Album Launch</td><td>Rafael Domingo</td><td>Main Stage</td><td class="dt">Oct 24, 6:00 PM</td><td><span class="st approved">Approved</span></td><td></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="dpanel">
+      <div class="dpanel-head">
+        <div><h4>Latest Registrations</h4><p>Accounts created from the public Registration Page</p></div>
+        <span class="link">View All<svg class="ic s"><use href="#i-arrow"/></svg></span>
+      </div>
+      <div class="scrollx"><table>
+        <thead><tr><th>Username</th><th>Full name</th><th>Type</th><th>Email</th><th>Registered</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>northlinelive</td><td>Paolo Mendoza</td><td>Organizer</td><td>paolo.mendoza@example.com</td><td class="dt">Oct 18, 2026</td><td><span class="act ghost">Edit</span></td></tr>
+          <tr><td>brightriggers</td><td>Anna Marie Bautista</td><td>Prod. Crew</td><td>anna.bautista@example.com</td><td class="dt">Oct 18, 2026</td><td><span class="act ghost">Edit</span></td></tr>
+          <tr><td>lowtidecollective</td><td>Jerome Reyes</td><td>Band</td><td>jerome.reyes@example.com</td><td class="dt">Oct 18, 2026</td><td><span class="act ghost">Edit</span></td></tr>
+          <tr><td>mariaacoustic</td><td>Maria Lopez Villanueva</td><td>Solo Artist</td><td>maria.v@example.com</td><td class="dt">Oct 18, 2026</td><td><span class="act ghost">Edit</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="dsh-two wide">
+      <div class="dpanel">
+        <div class="dpanel-head"><h4>Live System Activity</h4></div>
+        <ul class="feed">
+          <li><span class="fi teal"><svg class="ic"><use href="#i-userplus"/></svg></span><div><b>New Performer Registered</b><small>Jerome Reyes registered as Band account.</small></div><time>10m ago</time></li>
+          <li><span class="fi amber"><svg class="ic"><use href="#i-cal"/></svg></span><div><b>Booking Request Submitted</b><small>Paolo Mendoza requested Outdoor Pavilion for Nov 7.</small></div><time>1h ago</time></li>
+          <li><span class="fi green"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Booking Approved</b><small>Acoustic Rehearsal Session confirmed for Rehearsal Studio A.</small></div><time>3h ago</time></li>
+        </ul>
+      </div>
+      <div class="dpanel">
+        <div class="dpanel-head"><h4>Today's Stage Cues</h4></div>
+        <div class="cues">
+          <div class="cue"><div><small>10:00 · Rehearsal Studio A</small><b>Acoustic Rehearsal Session</b></div><span class="cq approved">Approved</span></div>
+          <div class="cue"><div><small>18:00 · Main Stage</small><b>Midnight Static Album Launch</b></div><span class="cq approved">Approved</span></div>
+        </div>
+        <div class="cue-foot"><span>Approved bookings dated today</span><b>2 shows</b></div>
+      </div>
+    </div>
+
+    <footer class="sitefoot">
+      <div class="sf-row">
+        <div class="sf-brand"><b>StageSync</b><p>Command your show, cue by cue. Professional performance, venue, and rehearsal studio operations management.</p></div>
+        <div class="sf-links"><h5>Quick Links</h5><div><span>Home Console</span><span>About System</span><span>Get in Touch</span><span>Performer Register</span></div></div>
+      </div>
+      <hr>
+      <p class="sf-copy">© 2026 StageSync. All rights reserved.</p>
+    </footer>
+  </div>
+</div>
+
+</div>
+<div><p class="label">Part 2 · Public pages and shared footer</p>
+<div class="pubdemo">
+  <div class="pub-stage">
+    <div class="pub-nav">
+      <b>STAGESYNC</b>
+      <div class="pub-links"><span>Home</span><span>About</span><span>Contact</span><span class="signin">Sign In</span></div>
+    </div>
+    <div class="pub-hero">
+      <h2>Welcome to<br>StageSync</h2>
+      <span class="pub-cta">Register Now</span>
+    </div>
+    <p class="pub-note">The dark gradient is only a stand-in for your real background photo. Keep the real photo exactly as it is.</p>
+  </div>
+
+  <div class="pub-stage">
+    <div class="pub-nav">
+      <b>STAGESYNC</b>
+      <div class="pub-links"><span>Home</span><span>About</span><span>Contact</span><span class="signin">Sign In</span></div>
+    </div>
+    <div class="pub-stack">
+      <div class="pub-card pub-title">
+        <h2><em>About</em> StageSync</h2>
+        <p>Stage and performance management for live shows, venues, and rehearsal studios.</p>
+      </div>
+
+      <div class="pub-card">
+        <h4><span class="pub-ico">i</span>System Overview</h4>
+        <div class="scrollx"><table>
+          <thead><tr><th>Feature / Tech</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><b>System Purpose</b></td><td>Performer onboarding, account management, and live show operations.</td></tr>
+            <tr><td><b>Backend</b></td><td>ASP.NET MVC (C# Razor)</td></tr>
+            <tr><td><b>Frontend</b></td><td>AngularJS with Materialize CSS and custom styling.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="btnrow"><span class="btn-p">← Back to Home</span></div>
+      </div>
+
+      <div class="pub-card pub-title">
+        <h2><em>Performer</em> Registration</h2>
+        <p>Join the StageSync network to manage performer accounts, schedules, and production users.</p>
+      </div>
+
+      <div class="pub-card">
+        <h4><span class="pub-ico">+</span>Register Performer</h4>
+        <div class="pub-grid">
+          <div class="fld focus"><small>Username *</small></div>
+          <div class="fld"><small>Performer Type</small><span>Select Type</span></div>
+          <div class="fld"><small>First Name *</small></div>
+          <div class="fld"><small>Last Name *</small></div>
+          <div class="fld"><small>Password * (8-12 chars, upper/lower/number/special)</small></div>
+          <div class="fld"><small>Confirm Password *</small></div>
+        </div>
+        <div class="btnrow"><span class="btn-g">Clear</span><span class="btn-p">Register</span></div>
+      </div>
+
+      <div class="pub-card pub-login">
+        <h4><span class="pub-ico">●</span>Crew &amp; Performer Login</h4>
+        <p class="pub-sub">Sign in to access the stage console</p>
+        <div class="fld focus"><small>Username *</small></div>
+        <div class="fld"><small>Password *</small></div>
+        <div class="btnrow"><span class="btn-p">Login</span><span class="btn-g">Clear</span></div>
+        <p class="pub-link">New to the crew? <b>Register here</b></p>
+      </div>
+    </div>
+
+    <footer class="sitefoot flush">
+      <div class="sf-row">
+        <div class="sf-brand"><b>StageSync</b><p>Command your show, cue by cue. Professional performance, venue, and rehearsal studio operations management.</p></div>
+        <div class="sf-links"><h5>Quick Links</h5><div><span>Home Console</span><span>About System</span><span>Get in Touch</span><span>Performer Register</span></div></div>
+      </div>
+      <hr>
+      <p class="sf-copy">© 2026 StageSync. All rights reserved.</p>
+    </footer>
+  </div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

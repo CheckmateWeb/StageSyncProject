@@ -13,9 +13,10 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
     };
     $scope.showPassword = false;
 
-    // --- Load Accounts ---
+    // --- Load Accounts (Change this and add variable) ---
     $scope.loadAccounts = function () {
-        StageSyncService.getAccounts().then(function (res) {
+          
+         StageSyncService.getAccounts().then(function (res) {
             $scope.userArray = res.data || [];
         }, function () {
             $scope.userArray = $scope.userArray || [];
@@ -26,7 +27,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
     $scope.registrationFunc = function () {
 
         var user = $scope.user;
-        var namePattern = /\d/; // added this to check for any numbers
+        var namePattern = /\d/; // added this dito para ma check for any numbers
 
         // Check required fields
         if (!user.username ||
@@ -97,7 +98,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
             return;
         }
 
-        // Strong password rules
+        // Strong password rules tas ung min and max pass 
         var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,12}$/;
         if (!passwordPattern.test(user.password)) {
             $scope.SweetAlertError(
