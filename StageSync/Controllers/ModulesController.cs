@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Web.Mvc;
+using StageSync.Models.Context;
 
 namespace StageSync.Controllers
 {
@@ -35,6 +37,18 @@ namespace StageSync.Controllers
         public string GetSystemStatus()
         {
             return "All Systems Operational";
+        }
+
+        // ADDED: simple database connection test
+        // Open: https://localhost:44393/Modules/DbTest
+        public ActionResult DbTest()
+        {
+            using (var db = new StageSyncContext())
+            {
+                int types = db.tbl_performer_types.Count();
+                int performers = db.tbl_performers.Count();
+                return Content("Connected! Performer types: " + types + ", performers: " + performers);
+            }
         }
     }
 }
