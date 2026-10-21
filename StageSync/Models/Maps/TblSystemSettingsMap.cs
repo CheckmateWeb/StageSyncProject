@@ -10,7 +10,7 @@ namespace StageSync.Models.Maps
         {
             HasKey(k => k.settingKey);
             ToTable("tbl_system_settings");
-            Property(p => p.settingKey).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
         }
     }
 }

@@ -11,5 +11,7 @@ namespace StageSync.Models.Tables
         public TimeSpan startTime { get; set; }
         public TimeSpan endTime { get; set; }
         public string status { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

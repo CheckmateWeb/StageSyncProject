@@ -4,8 +4,7 @@ using MySql.Data.EntityFramework;
 
 namespace StageSync.Models.Context
 {
-    // Tells EF to treat the server (XAMPP MariaDB) as MySQL 5.7,
-    // because the provider misreads MariaDB's version string.
+   
     public class StageSyncMySqlConfiguration : MySqlEFConfiguration
     {
         public StageSyncMySqlConfiguration()

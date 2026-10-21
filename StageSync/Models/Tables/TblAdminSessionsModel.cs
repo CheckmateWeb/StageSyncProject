@@ -8,5 +8,9 @@ namespace StageSync.Models.Tables
         public int adminID { get; set; }
         public string sessionToken { get; set; }
         public DateTime expiresAt { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
+
+
     }
 }

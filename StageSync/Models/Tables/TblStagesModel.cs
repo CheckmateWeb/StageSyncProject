@@ -11,5 +11,7 @@ namespace StageSync.Models.Tables
         public int capacity { get; set; }
         public decimal hourlyRate { get; set; }
         public string status { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

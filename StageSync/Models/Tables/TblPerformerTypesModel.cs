@@ -6,5 +6,7 @@ namespace StageSync.Models.Tables
     {
         public int typeID { get; set; }
         public string typeName { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

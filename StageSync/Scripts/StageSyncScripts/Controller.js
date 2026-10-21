@@ -13,23 +13,28 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
     };
     $scope.showPassword = false;
 
-    // --- Load Accounts (Change this and add variable) ---
-    $scope.loadAccounts = function () {
-          
-         StageSyncService.getAccounts().then(function (res) {
-            $scope.userArray = res.data || [];
-        }, function () {
-            $scope.userArray = $scope.userArray || [];
-        });
+    $scope.loadAccounts = function() {
+
+        StageSyncService.getAccounts()
+            .then(function(response) {
+                var accounts = response.data || [];
+                $scope.userArray = accounts;
+                $scope.totalAccounts = accounts.length;
+            })
+            .catch(function(error) {
+                console.error("Failed to load accounts:", error);
+                $scope.userArray = [];
+                $scope.totalAccounts = 0;
+            });
     };
 
-    // - Registration & Validation -
+    
     $scope.registrationFunc = function () {
 
         var user = $scope.user;
-        var namePattern = /\d/; // added this dito para ma check for any numbers
+        var namePattern = /\d/; 
 
-        // Check required fields
+        
         if (!user.username ||
             !user.firstname ||
             !user.lastname ||
@@ -42,63 +47,63 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
             return;
         }
 
-        // Check for numbers in First Name
+       
         if (namePattern.test(user.firstname)) {
             $scope.SweetAlertError("First Name cannot contain numbers.");
             return;
         }
 
-        // Check for numbers in Middle Name (if provided)
+       
         if (user.middlename && namePattern.test(user.middlename)) {
             $scope.SweetAlertError("Middle Name cannot contain numbers.");
             return;
         }
 
-        // Check for numbers in Last Name
+     
         if (namePattern.test(user.lastname)) {
             $scope.SweetAlertError("Last Name cannot contain numbers.");
             return;
         }
 
-        // Username length (3-20)
+        
         if (user.username.length < 3 || user.username.length > 20) {
             $scope.SweetAlertError("Username must be between 3 and 20 characters.");
             return;
         }
 
-        // First name length (2-50)
+
         if (user.firstname.length < 2 || user.firstname.length > 50) {
             $scope.SweetAlertError("First Name must be between 2 and 50 characters.");
             return;
         }
 
-        // Last name length (2-50)
+        
         if (user.lastname.length < 2 || user.lastname.length > 50) {
             $scope.SweetAlertError("Last Name must be between 2 and 50 characters.");
             return;
         }
 
-        // Email format & max length
+        
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(user.email) || user.email.length > 100) {
             $scope.SweetAlertError("Please enter a valid email address (max 100 characters).");
             return;
         }
 
-        // Contact number format (7-15 digits)
+        
         var contactPattern = /^[0-9+\-\s()]{7,15}$/;
         if (!contactPattern.test(user.contactno)) {
             $scope.SweetAlertError("Contact number must be between 7 and 15 digits.");
             return;
         }
 
-        // Password length (8-12)
+        
         if (user.password.length < 8 || user.password.length > 12) {
             $scope.SweetAlertError("Password must be between 8 and 12 characters.");
             return;
         }
 
-        // Strong password rules tas ung min and max pass 
+        
         var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,12}$/;
         if (!passwordPattern.test(user.password)) {
             $scope.SweetAlertError(
@@ -107,13 +112,13 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
             return;
         }
 
-        // Match passwords
+
         if (user.password !== $scope.ConfirmPassword) {
             $scope.SweetAlertError("Passwords do not match.");
             return;
         }
 
-        // Check duplicate username
+        
         var usernameTaken = false;
         for (var i = 0; i < $scope.userArray.length; i++) {
             if ($scope.userArray[i].username && user.username &&
@@ -129,7 +134,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
             return;
         }
 
-        // Check duplicate email
+        
         var emailTaken = false;
         for (var j = 0; j < $scope.userArray.length; j++) {
             if ($scope.userArray[j].email && user.email &&
@@ -199,7 +204,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
         });
     };
 
-    // --- Reset Registration Form ---
+    
     $scope.clearFunc = function () {
         $scope.user = {};
         $scope.ConfirmPassword = "";
@@ -207,7 +212,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
         $scope.errorMessage = "";
     };
 
-    // --- Login Actions ---
+    
     $scope.login = function () {
         var username = $scope.loginData && $scope.loginData.Username;
         var password = $scope.loginData && $scope.loginData.Password;

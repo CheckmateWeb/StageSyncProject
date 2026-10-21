@@ -14,5 +14,7 @@ namespace StageSync.Models.Tables
         public string contactNumber { get; set; }
         public string passwordHash { get; set; }
         public string status { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

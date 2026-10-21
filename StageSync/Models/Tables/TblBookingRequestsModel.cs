@@ -13,5 +13,7 @@ namespace StageSync.Models.Tables
         public decimal totalAmount { get; set; }
         public string status { get; set; }
         public string remarks { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

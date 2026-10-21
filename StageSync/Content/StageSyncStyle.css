@@ -517,6 +517,61 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 }
 
 /* ==========================================================================
+   TABLE ACTION BUTTONS (Edit / Delete icons in Registered Accounts)
+   FIX: the global "button i { color: #fff !important }" rule above made these
+   icons white on a light card, so they were invisible.
+   ========================================================================== */
+.stagesync-table button[title="Edit"],
+.stagesync-table button[title="Delete"] {
+    background-color: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 4px 8px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease !important;
+}
+
+.stagesync-table button[title="Edit"] {
+    border: 1px solid #2563eb !important;
+}
+
+.stagesync-table button[title="Delete"] {
+    border: 1px solid #ef4444 !important;
+}
+
+.stagesync-table button[title="Edit"] i,
+.stagesync-table button[title="Edit"] .material-icons {
+    color: #2563eb !important;
+    -webkit-text-fill-color: #2563eb !important;
+    margin-right: 0 !important;
+}
+
+.stagesync-table button[title="Delete"] i,
+.stagesync-table button[title="Delete"] .material-icons {
+    color: #ef4444 !important;
+    -webkit-text-fill-color: #ef4444 !important;
+    margin-right: 0 !important;
+}
+
+.stagesync-table button[title="Edit"]:hover {
+    background-color: #2563eb !important;
+    transform: translateY(-1px);
+}
+
+.stagesync-table button[title="Delete"]:hover {
+    background-color: #ef4444 !important;
+    transform: translateY(-1px);
+}
+
+    .stagesync-table button[title="Edit"]:hover i,
+    .stagesync-table button[title="Edit"]:hover .material-icons,
+    .stagesync-table button[title="Delete"]:hover i,
+    .stagesync-table button[title="Delete"]:hover .material-icons {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+/* ==========================================================================
    FOOTER (White Glass)
    ========================================================================== */
 footer, footer.stagesync-footer, .page-footer {

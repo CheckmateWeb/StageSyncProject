@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_StageSyncLayout.cshtml";
 }
 
-<div class=" hero-container bg-about" style="padding-top: 40px; padding-bottom: 50px;">
+<div class=" hero-container bg-about" ng-init="loadAccounts();" style="padding-top: 40px; padding-bottom: 50px;">
 
 
     <!-- header -->
@@ -190,7 +190,7 @@
         </div>
     </div>
 
-    <!-- back to login -->
+
     <div class="center-align" style="margin-top: 20px;">
         <a href="/Modules/LoginPage" class="btn-outline-lime" style="padding: 10px 24px; text-decoration: none;">
             ← Back to Login
@@ -200,8 +200,8 @@
 </div>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var selects = document.querySelectorAll("select");
-            M.FormSelect.init(selects);
-        });
+            document.addEventListener("DOMContentLoaded", function () {
+                var selects = document.querySelectorAll("select");
+                M.FormSelect.init(selects);
+            });
 </script>

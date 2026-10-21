@@ -9,5 +9,7 @@ namespace StageSync.Models.Tables
         public string title { get; set; }
         public string message { get; set; }
         public bool isPublished { get; set; }
+        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }
