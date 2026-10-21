@@ -33,13 +33,13 @@ namespace StageSync.Controllers
             return View();
         }
 
-        // Called from AngularJS via $http for the live status banner on the Home page
+        
         public string GetSystemStatus()
         {
             return "All Systems Operational";
         }
 
-        // ADDED: simple database connection test
+        
         // Open: https://localhost:44393/Modules/DbTest
         public ActionResult DbTest()
         {
@@ -51,7 +51,7 @@ namespace StageSync.Controllers
             }
         }
 
-        // ADDED: returns all registered accounts from the database (used by loadAccounts in Controller.js)
+
         [HttpGet]
         public JsonResult GetAccounts()
         {

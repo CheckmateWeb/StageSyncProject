@@ -1,6 +1,6 @@
 app.controller("StageSyncController", function ($scope, StageSyncService) {
 
-    // Models & variables
+
     $scope.userArray = [];
     $scope.user = {};
     $scope.isEditing = false;
@@ -150,7 +150,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
             return;
         }
 
-        // Save or update user
+       
         if ($scope.isEditing) {
             for (var k = 0; k < $scope.userArray.length; k++) {
                 if ($scope.userArray[k].id === user.id) {
@@ -168,7 +168,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
         }
     };
 
-    // --- Edit Account ---
+    
     $scope.editFunc = function (udata) {
         $scope.isEditing = true;
         $scope.user = angular.copy(udata);
@@ -179,7 +179,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
         });
     };
 
-    // --- Delete Account ---
+    
     $scope.deleteFunc = function (id) {
         Swal.fire({
             title: "Delete account?",
@@ -252,7 +252,7 @@ app.controller("StageSyncController", function ($scope, StageSyncService) {
         }
     };
 
-    // --- Alerts ---
+   
     $scope.SweetAlertError = function (message) {
         Swal.fire({
             title: "Error!",
